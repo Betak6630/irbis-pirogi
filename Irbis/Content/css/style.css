@@ -1,0 +1,33 @@
+header nav{
+	max-height: 50px;
+	overflow: hidden;
+}
+	header nav .pull-right{
+		padding-top: 4px;
+		width: 30px;
+	}
+	header nav .pull-right span{
+		display: block;
+		width: 30px;
+		height: 2px;
+		background-color: #fff;
+	}
+	header nav .pull-right span + span{
+		margin-top: 8px;
+	}
+
+	header nav.show{
+		max-height: 100%;
+	}
+
+nav ul{
+	padding: 10px 0;
+}
+	nav ul li{
+		display: inline-block;
+		padding: 2px 0;
+	}
+
+footer a{
+	color: #fff;
+}
