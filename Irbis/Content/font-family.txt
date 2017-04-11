@@ -1,0 +1,32 @@
+01	font-family: "Arial Black", "Helvetica CY", "Nimbus Sans L" sans-serif;
+02	font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+03	font-family: "Comic Sans MS", "Monaco CY", cursive;
+04	font-family: "Courier New", "Nimbus Mono L", monospace;
+05	font-family: Georgia, "Century Schoolbook L", Serif;
+06	font-family: Impact, "Charcoal CY", sans-serif;
+07	font-family: "Lucida Console", Monaco, monospace;
+08	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+09	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+10	font-family: Tahoma, "Geneva CY", sans-serif;
+11	font-family: "Times New Roman", "Times CY", "Nimbus Roman No9 L", serif;
+12	font-family: "Trebuchet MS", "Helvetica CY", sans-serif;
+13	font-family: Verdana, "Geneva CY", "DejaVu Sans", sans-serif;
+
+
+/*/////////////////*/
+
+eng
+
+01	font-family: "Arial Black", Gadget, "Nimbus Sans L", sans-serif;
+02	font-family: Arial, "Nimbus Sans L", Helvetica, sans-serif;
+03	font-family: "Comic Sans MS", Monaco, TSCu_Comic cursive;
+04	font-family: "Courier New", "Nimbus Mono L", Courier, monospace;
+05	font-family: Georgia, "Century Schoolbook L", Serif;
+06	font-family: Impact, Charcoal, Rekha, sans-serif;
+07	font-family: "Lucida Console", Monaco, monospace;
+08	font-family: "Lucida Sans Unicode", "Lucida Grande", Garuda, sans-serif;
+09	font-family: Tahoma, Geneva, Kalimati, sans-serif;
+10	font-family: "Palatino Linotype", Garuda, Palatino, sans-serif;
+11	font-family: "Times New Roman", "Nimbus Roman No9 L", Times, serif;
+12	font-family: "Trebuchet MS","Nimbus Sans L", Helvetica, sans-serif;
+13	font-family: Verdana, Geneva, "DejaVu Sans", sans-serif;
