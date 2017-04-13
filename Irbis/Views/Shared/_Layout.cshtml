@@ -30,12 +30,11 @@
 <body>
 
     <header class="container-fluid header">
-        <nav class="text-center">
+        <nav>
             <ul>
                 <li class="pull-right" id="menuBtn">
                     <span></span><span></span><span></span>
                 </li>
-              
                 <li><a href="/Home/About">О компании</a></li>
                 <li><a href="">Награды за качество</a></li>
                 <li><a href="">Оплата и доставка</a></li>
@@ -49,11 +48,35 @@
         </nav>
     </header>
 
+    <section class="maiBbar text-center mb20">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul>
+                    <li><img class="svg" src="/Content/img/phone.svg" alt="+7 (966) 144-34-24" title="+7 (966) 144-34-24"><a href="tel:+79661443424" title="+7 (966) 144-34-24">+7 (966) 144-34-24</a></li>
+                    <li><img class="svg" src="/Content/img/phone.svg" alt="+7 (495) 223-17-93" title="+7 (495) 223-17-93"><a href="tel:+74952231793" title="+7 (495) 223-17-93">+7 (495) 223-17-93</a></li>
+                    <li><span class="btn btn-gold">ЗАКАЗАТЬ</span></li>
+                    <li><img class="svg" src="/Content/img/delivery.svg" alt=""><a href="Адрес" title="Адрес">9:00-20.00</a></li>
+                    <li><img class="svg" src="/Content/img/clock.svg" alt=""><a href="Адрес" title="Адрес">9:00-21.00</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a class="logoType" href="/"><img src="http://open-krasnodar.ru/subdomain_files/logotip/1942.jpg" alt="" /></a>
+            </div>
+            <div class="col-sm-4">
+                <ul>
+                    <li><a href="http://instagram.com/irbis.kfk" title="kfkk" target="blank"><img class="svg" src="/Content/img/instagram.svg" alt="" title="kfk"></a></li>
+                    <li><img class="svg" src="/Content/img/gmail.svg" alt="kfk"><a href="mailto:irbis.kfk@gmail.com" title="irbis.kfk@gmail.com">irbis.kfk@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     @RenderBody()
 
 
     <nav class="container-fluid text-center">
         <ul>
+            <li><a class="logoType" href="/"><img src="http://open-krasnodar.ru/subdomain_files/logotip/1942.jpg" alt="" /></a></li>
             <li><a href="">О компании</a></li>
             <li><a href="">Награды за качество</a></li>
             <li><a href="">Оплата и доставка</a></li>

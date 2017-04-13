@@ -66,6 +66,26 @@ ul{
 	margin: 0;
 }
 /* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */
+/* ~^v~^v~^v~^v~^v~^v~^v~ BTNS v~^v~^v~^v~^v~^v~^v~^v~ */
+/* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */
+.btn-gold {
+    background-color: hsl(41, 92%, 30%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6b831", endColorstr="#926606");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#f6b831), to(#926606));
+    background-image: -moz-linear-gradient(top, #f6b831, #926606);
+    background-image: -ms-linear-gradient(top, #f6b831, #926606);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6b831), color-stop(100%, #926606));
+    background-image: -webkit-linear-gradient(top, #f6b831, #926606);
+    background-image: -o-linear-gradient(top, #f6b831, #926606);
+    background-image: linear-gradient(#f6b831, #926606);
+    border-color: #926606 #926606 hsl(41, 92%, 23%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.46);
+    -webkit-font-smoothing: antialiased;
+}
+/* --------------------------------------------------- */
+/* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */
 /* ~^v~^v~^v~^v~^v~ SEPARATORS v~^v~^v~^v~^v~^v~^v~^v~ */
 /* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */
 .mt0{margin-top: 0;}
