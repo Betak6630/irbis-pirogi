@@ -1,9 +1,17 @@
+.logoType {
+   display: inline-block;
+}
+    .logoType:hover {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
 header nav{
 	max-height: 50px;
 	overflow: hidden;
 }
 	header nav .pull-right{
-		padding-top: 4px;
+		padding-top: 8px;
 		width: 30px;
 	}
 	header nav .pull-right span{
@@ -19,19 +27,27 @@ header nav{
 	header nav.show{
 		max-height: 100%;
 	}
-@media all and (min-width: 990px) {
+
+nav .logoType img {
+    max-height: 20px;
+}
+
+
+@media all and (min-width: 1000px) {
+    header nav {
+        text-align: center;
+    }
     #menuBtn {
         display: none;
     }
 }
-
 
 nav ul{
 	padding: 10px 0;
 }
 	nav ul li{
 		display: inline-block;
-		padding: 2px 0;
+		padding: 5px 0;
 	}
 
 footer a{
