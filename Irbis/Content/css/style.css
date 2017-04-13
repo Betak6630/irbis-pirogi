@@ -19,6 +19,12 @@ header nav{
 	header nav.show{
 		max-height: 100%;
 	}
+@media all and (min-width: 990px) {
+    #menuBtn {
+        display: none;
+    }
+}
+
 
 nav ul{
 	padding: 10px 0;
