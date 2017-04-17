@@ -270,6 +270,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Shared\Control\MainMenu.cshtml" />
     <Content Include="Views\Shared\Control\TopProduct.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ViewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
