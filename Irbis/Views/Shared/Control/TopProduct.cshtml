@@ -1,5 +1,10 @@
 ﻿<section class="container-fluid body white">
     <div class="row">
-        @Html.Partial("Control/TopProduct")
+        @{
+            for (int i = 0; i < 6; i++)
+            {
+                @Html.Partial("DisplayTemplates/ViewProduct")
+            }
+        }
     </div>
 </section>
