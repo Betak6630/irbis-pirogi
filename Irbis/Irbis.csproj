@@ -203,6 +203,7 @@
     <Content Include="Content\js\imageGallery\demo.js" />
     <Content Include="Content\js\imageGallery\jquery.blueimp-gallery.min.js" />
     <Content Include="Content\js\modernizr-custom.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Content\js\npm.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
