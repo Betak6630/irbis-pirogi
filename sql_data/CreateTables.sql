@@ -7,6 +7,7 @@ GO
 create table Product (
 Id int PRIMARY KEY IDENTITY(1, 1) not null,
 Name nvarchar(100) not null,
+Description nvarchar(255),
 ProductTypeId int not null FOREIGN KEY REFERENCES  ProductType(Id)
 )
 
