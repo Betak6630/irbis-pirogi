@@ -196,6 +196,7 @@
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\map.svg" />
     <Content Include="Content\img\phone.svg" />
+    <Content Include="Content\img\product\3.jpg" />
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
