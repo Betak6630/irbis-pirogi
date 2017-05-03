@@ -30,8 +30,9 @@ namespace Irbis.DataService
 
         public IEnumerable<Product> GetProducts()
         {
+            var data = _db.Query<Product>("select * from product").ToList();
 
-            return new List<Product>();
+            return data;
         }
     }
 }

@@ -8,11 +8,10 @@
     <div class="row">
         
         @{
-            for (int i = 0; i < 10; i++)
+            foreach (var product in Model.Products)
             {
-                @Html.Partial("DisplayTemplates/ViewProduct")
+                @Html.Partial("DisplayTemplates/ViewProduct", product)
             }
         }
-
     </div>
 </section>

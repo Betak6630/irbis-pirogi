@@ -170,6 +170,7 @@
     <Compile Include="Models\Category\IndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -283,6 +284,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Irbis.DataService\Irbis.DataService.csproj">
+      <Project>{a94f9801-333e-4975-b6e5-3606df9bd3ed}</Project>
+      <Name>Irbis.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Irbis.Entities\Irbis.Entities.csproj">
+      <Project>{40bfec7e-f6f1-4eee-8986-f8b046c60ed2}</Project>
+      <Name>Irbis.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

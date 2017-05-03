@@ -1,4 +1,9 @@
-﻿namespace Irbis.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Irbis.Models
 {
     public class Product
     {
@@ -7,9 +12,9 @@
         /// </summary>
         public int Id { get; set; }
 
-       /// <summary>
-       ///  Название продукта 
-       /// </summary>
+        /// <summary>
+        ///  Название продукта 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
@@ -21,5 +26,6 @@
         /// Тип продукта
         /// </summary>
         public int ProductTypeId { get; set; }
+
     }
 }

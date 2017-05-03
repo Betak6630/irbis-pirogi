@@ -10,13 +10,12 @@ namespace Irbis.DataService
     public class Init
     {
         private Database _providerPoco;
-        public ProductDataService ProductDataService;
-        public Init(string connectionString)
+        public ProductDataService ProductDataService { get; private set; }
+
+        public Init(string nameConnectionString= "DefaultConnection")
         {
-            var _providerPoco = new Database(connectionString);
+            _providerPoco = new Database(nameConnectionString);
             ProductDataService = new ProductDataService(_providerPoco);
-
-
         }
     }
 }

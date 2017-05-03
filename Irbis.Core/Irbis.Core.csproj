@@ -50,5 +50,15 @@
   <ItemGroup>
     <Folder Include="Logic\Entities\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Irbis.DataService\Irbis.DataService.csproj">
+      <Project>{a94f9801-333e-4975-b6e5-3606df9bd3ed}</Project>
+      <Name>Irbis.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Irbis.Entities\Irbis.Entities.csproj">
+      <Project>{40bfec7e-f6f1-4eee-8986-f8b046c60ed2}</Project>
+      <Name>Irbis.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
