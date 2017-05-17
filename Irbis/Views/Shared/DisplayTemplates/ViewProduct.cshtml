@@ -11,17 +11,17 @@
             <div>
                 <table>
                     <tbody>
-                        <tr>
-                            <td colspan="2">Выберите вес:</td>
-                        </tr>
-                        <tr>
-                            <td><input id="variants_1200" name="variant_@Model.Id" value="1200" type="radio" checked=""></td>
-                            <td><label for="variants_1200">1200 г. —  <span>700 <span>руб.</span></span></label></td>
-                        </tr>
-                        <tr>
-                            <td><input id="variants_1000" name="variant_@Model.Id" value="1000" type="radio"></td>
-                            <td><label for="variants_1000">1000 г. —  <span>650 <span>руб.</span></span></label></td>
-                        </tr>
+                    <tr>
+                        <td colspan="2">Выберите вес:</td>
+                    </tr>
+                        @foreach (var item in Model.Option)
+                        {
+                            <tr>
+                                <td><input id="options_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked=""></td>
+                                <td><label for="options_@item.Id">@item.Weight г. —  <span>@item.Price <span>руб.</span></span></label></td>
+                            </tr>
+                        }
+                       
                     </tbody>
                 </table>
 

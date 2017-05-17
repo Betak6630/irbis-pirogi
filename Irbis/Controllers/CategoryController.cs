@@ -31,13 +31,29 @@ namespace Irbis.Controllers
 
                 foreach (var item in data)
                 {
-                    products.Add(new Product()
+                    var productOptions = _productDataService.GetProductOptionsByProductId(item.Id);
+
+                    var p = new Product()
                     {
                         Id = item.Id,
                         Name = item.Name,
                         Description = item.Description,
-                        ProductTypeId = item.ProductTypeId
-                    });
+                        ProductTypeId = item.ProductTypeId,
+                        Option = new List<ProductOption>()
+                    };
+
+                    foreach (var productOption in productOptions)
+                    {
+                        p.Option.Add(new ProductOption()
+                        {
+                            Id = productOption.Id,
+                            ProductId = productOption.ProductId,
+                            Weight = productOption.Weight,
+                            Price = productOption.Price
+                        });
+                    }
+
+                    products.Add(p);
                 }
 
                 model.Title = "Осетинские пироги";

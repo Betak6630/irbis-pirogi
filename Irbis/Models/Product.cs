@@ -27,5 +27,7 @@ namespace Irbis.Models
         /// </summary>
         public int ProductTypeId { get; set; }
 
+        public List<ProductOption> Option { get; set; }
+
     }
 }
