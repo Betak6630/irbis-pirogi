@@ -296,6 +296,10 @@
       <Project>{40bfec7e-f6f1-4eee-8986-f8b046c60ed2}</Project>
       <Name>Irbis.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Irbis.Utils\Irbis.Utils.csproj">
+      <Project>{bd534916-cf97-4db6-b7d4-bf2fdd2f9560}</Project>
+      <Name>Irbis.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

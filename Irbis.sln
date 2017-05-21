@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Irbis.Entities", "Irbis.Ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Irbis.DataService", "Irbis.DataService\Irbis.DataService.csproj", "{A94F9801-333E-4975-B6E5-3606DF9BD3ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Irbis.Utils", "Irbis.Utils\Irbis.Utils.csproj", "{BD534916-CF97-4DB6-B7D4-BF2FDD2F9560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A94F9801-333E-4975-B6E5-3606DF9BD3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A94F9801-333E-4975-B6E5-3606DF9BD3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A94F9801-333E-4975-B6E5-3606DF9BD3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD534916-CF97-4DB6-B7D4-BF2FDD2F9560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD534916-CF97-4DB6-B7D4-BF2FDD2F9560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD534916-CF97-4DB6-B7D4-BF2FDD2F9560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD534916-CF97-4DB6-B7D4-BF2FDD2F9560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

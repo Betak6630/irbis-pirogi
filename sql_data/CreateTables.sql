@@ -27,3 +27,21 @@
   --insert into ProductOption values (2, 600, 350)
   --insert into ProductOption values (2, 1000, 550)
   --insert into ProductOption values (2, 1200, 650)
+
+  --go 
+  --create table Token(
+  --Id uniqueidentifier PRIMARY KEY not null,
+  --UserId int not null,
+  --CreatedAt datetime not null default getdate()
+  --)
+
+  --go
+  --create table Busket(
+  --Id int PRIMARY KEY IDENTITY(1,1) not null,
+  --Token uniqueidentifier not null,
+  --P
+
+
+  select * from Token
+
+  

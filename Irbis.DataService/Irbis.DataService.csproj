@@ -51,6 +51,7 @@
     <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="ProductDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\Generated\PetaPoco.Core.ttinclude" />
