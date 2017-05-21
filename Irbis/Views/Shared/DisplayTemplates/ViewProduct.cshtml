@@ -17,8 +17,8 @@
                         @foreach (var item in Model.Option)
                         {
                             <tr>
-                                <td><input id="options_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked=""></td>
-                                <td><label for="options_@item.Id">&nbsp;@item.Weight г. —  <span>@item.Price <span>руб.</span></span></label></td>
+                                <td><input id="option_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked=""></td>
+                                <td><label for="option_@item.Id">&nbsp;@item.Weight г. —  <span>@item.Price <span>руб.</span></span></label></td>
                             </tr>
                         }
                        
@@ -27,11 +27,11 @@
 
                 <div>
                     <div class="input-group">
-                        <input type="number" class="form-control" name="amount" value="1">
+                        <input id="product_@(Model.Id)_count" type="number" class="form-control" name="count" value="1">
                     </div>
                 </div>
 
-                <button class="btn btn-gold btn-sm pull-right" role="button" onclick="">В корзину</button>
+                <button class="btn btn-gold btn-sm pull-right" role="button" onclick="irbis.product.addToCart(@Model.Id)">В корзину</button>
             </div>
         </div>
     </div>
