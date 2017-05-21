@@ -36,12 +36,17 @@
   --)
 
   --go
-  --create table Busket(
+  --create table Shopping—art(
   --Id int PRIMARY KEY IDENTITY(1,1) not null,
-  --Token uniqueidentifier not null,
-  --P
+  --Token uniqueidentifier not null FOREIGN KEY REFERENCES Token(Id),
+  --ProductId int not null,
+  --ProductOptionId int not null,
+  --[Count] int not null,
+  --CreatedAt datetime not null default getdate()
+  --)
+
+  select * from Shopping—art
 
 
-  select * from Token
 
   

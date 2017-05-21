@@ -12,12 +12,14 @@ namespace Irbis.DataService
         private Database _providerPoco;
         public ProductDataService ProductDataService { get; private set; }
         public TokenDataService TokenDataService { get; private set; }
+        public ShoppingСartDataService ShoppingСartDataService { get; private set; }
 
         public Init(string nameConnectionString= "DefaultConnection")
         {
             _providerPoco = new Database(nameConnectionString);
             ProductDataService = new ProductDataService(_providerPoco);
             TokenDataService = new TokenDataService(_providerPoco);
+            ShoppingСartDataService = new ShoppingСartDataService(_providerPoco);
         }
     }
 }
