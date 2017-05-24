@@ -17,9 +17,11 @@
             data: { productId: productId, optionProduct: optionProduct, countProduct: countProduct },
             success: function(response) {
                 console.log(response);
+                alert("Pirog add to Cart");
             },
             dataType: "json"
         });
+
     };
 
 
