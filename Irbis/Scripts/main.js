@@ -11,6 +11,15 @@
         console.log("OptionProduct: " + optionProduct);
         console.log("CountProduct: " + countProduct);
 
+        $.ajax({
+            type: "post",
+            url: "Shopping/AddProduct",
+            data: { productId: productId, optionProduct: optionProduct, countProduct: countProduct },
+            success: function(response) {
+                console.log(response);
+            },
+            dataType: "json"
+        });
     };
 
 
