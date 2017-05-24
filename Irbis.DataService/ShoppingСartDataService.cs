@@ -29,7 +29,7 @@ namespace Irbis.DataService
 
         }
 
-        public IEnumerable<ViewShoppingCart> GetShoppingСartByToken(Guid token)
+        public IEnumerable<ViewShoppingCart> GetByToken(Guid token)
         {
             string sqlQuery =
                 "select sc.ProductId, P.Name as ProductName, sc.ProductOptionId, po.Weight, p.ProductTypeId, sum(sc.Count) as Count, sum(sc.Count*po.Price) as TotalPrice " +
@@ -40,6 +40,16 @@ namespace Irbis.DataService
             var data = _db.Query<ViewShoppingCart>(sqlQuery).ToList();
 
             return data;
+        }
+
+        public decimal GetTotalPriceByToken(Guid token)
+        {
+            string sqlQuery = "select sum(sc.Count * Price) as TotalPrice " + "from ShoppingСart sc " +
+                              "join ProductOption po on po.Id = sc.ProductOptionId " + $"where Token = '{token}'";
+
+            var totalPrice = _db.ExecuteScalar<decimal>(sqlQuery);
+
+            return totalPrice;
         }
     }
 }

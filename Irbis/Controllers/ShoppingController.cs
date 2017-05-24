@@ -64,7 +64,7 @@ namespace Irbis.Controllers
                 token = Guid.Parse(tokenStr);
             }
 
-            var result = _shoppingСartDataService.GetShoppingСartByToken(token).ToList();
+            var result = _shoppingСartDataService.GetByToken(token).ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
