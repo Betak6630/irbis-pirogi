@@ -33,7 +33,7 @@ namespace Irbis.DataService
         {
             string sqlQuery =
                 "select sc.ProductId, P.Name as ProductName, sc.ProductOptionId, po.Weight, p.ProductTypeId, sum(sc.Count) as Count, sum(sc.Count*po.Price) as TotalPrice " +
-                "from ShoppingСart sc" + "join Product p on sc.ProductId = p.Id " +
+                "from ShoppingСart sc" + " join Product p on sc.ProductId = p.Id " +
                 "join ProductOption po on po.Id = sc.ProductOptionId" + $" where Token = '{token}' " +
                 "group by sc.ProductId, P.Name, sc.ProductOptionId, po.Weight, p.ProductTypeId, po.Price";
 

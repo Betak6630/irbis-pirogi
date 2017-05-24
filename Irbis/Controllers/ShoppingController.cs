@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Irbis.DataService;
+using Irbis.Entities;
 using Irbis.Models;
 using IndexViewModel = Irbis.Models.Category.IndexViewModel;
 
@@ -31,8 +32,8 @@ namespace Irbis.Controllers
             bool result = false;
 
             var tokenStr = Request.Cookies["token"]?.Value;
-            var token=Guid.Empty;
-             
+            var token = Guid.Empty;
+
             try
             {
                 if (tokenStr != null && !tokenStr.IsEmpty())
@@ -47,8 +48,25 @@ namespace Irbis.Controllers
             {
                 result = false;
             }
-           
+
             return Json(result);
+        }
+
+
+        [HttpGet]
+        public JsonResult GetShoppingСartByToken()
+        {
+            var tokenStr = Request.Cookies["token"]?.Value;
+            var token = Guid.Empty;
+
+            if (tokenStr != null && !tokenStr.IsEmpty())
+            {
+                token = Guid.Parse(tokenStr);
+            }
+
+            var result = _shoppingСartDataService.GetShoppingСartByToken(token).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
