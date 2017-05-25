@@ -1,6 +1,6 @@
 ﻿namespace Irbis.Entities
 {
-    public class ViewShoppingCart
+    public class ViewCart
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

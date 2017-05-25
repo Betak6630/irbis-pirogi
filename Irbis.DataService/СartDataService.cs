@@ -6,15 +6,15 @@ using PetaPoco;
 
 namespace Irbis.DataService
 {
-    public class ShoppingСartDataService
+    public class СartDataService
     {
         private Database _db;
-        public ShoppingСartDataService(Database db)
+        public СartDataService(Database db)
         {
             _db = db;
         }
 
-        public void AddProductToShoppingCart(Guid token, int productId, int productOptionId, int count)
+        public void AddProductToCart(Guid token, int productId, int productOptionId, int count)
         {
             var shoppingCart = new ShoppingСart()
             {
@@ -29,7 +29,7 @@ namespace Irbis.DataService
 
         }
 
-        public IEnumerable<ViewShoppingCart> GetByToken(Guid token)
+        public IEnumerable<ViewCart> GetByToken(Guid token)
         {
             string sqlQuery =
                 "select sc.ProductId, P.Name as ProductName, sc.ProductOptionId, po.Weight, p.ProductTypeId, sum(sc.Count) as Count, sum(sc.Count*po.Price) as TotalPrice " +
@@ -37,7 +37,7 @@ namespace Irbis.DataService
                 "join ProductOption po on po.Id = sc.ProductOptionId" + $" where Token = '{token}' " +
                 "group by sc.ProductId, P.Name, sc.ProductOptionId, po.Weight, p.ProductTypeId, po.Price";
 
-            var data = _db.Query<ViewShoppingCart>(sqlQuery).ToList();
+            var data = _db.Query<ViewCart>(sqlQuery).ToList();
 
             return data;
         }

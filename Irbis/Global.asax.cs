@@ -15,7 +15,7 @@ namespace Irbis
     public class MvcApplication : System.Web.HttpApplication
     {
         private static TokenDataService _tokenDataService;
-        private static ShoppingСartDataService _shoppingСartDataService;
+        private static СartDataService _сartDataService;
 
         protected void Application_Start()
         {
@@ -26,7 +26,7 @@ namespace Irbis
 
             var dataService = new Irbis.DataService.Init();
             _tokenDataService = dataService.TokenDataService;
-            _shoppingСartDataService = dataService.ShoppingСartDataService;
+            _сartDataService = dataService.СartDataService;
         }
 
         protected void Application_BeginRequest()

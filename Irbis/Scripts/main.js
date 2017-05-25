@@ -13,7 +13,7 @@
 
         $.ajax({
             type: "post",
-            url: "Shopping/AddProduct",
+            url: "Cart/AddProduct",
             data: { productId: productId, optionProduct: optionProduct, countProduct: countProduct },
             success: function(response) {
                 console.log(response);
