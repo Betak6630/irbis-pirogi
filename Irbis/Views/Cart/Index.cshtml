@@ -1,0 +1,79 @@
+﻿@model Irbis.Models.Cart.IndexViewModel
+
+<section class="container-fluid body dark pb10">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <h2 class="text-center">Оформление заказа</h2>
+            <ul>
+            
+            </ul>
+
+            <div class="cart cart_mode_checkout">
+                <div id="cart_list">
+                    <center><small></small></center>
+
+                    <table id="purchases">
+                        <tbody>
+                            <tr>
+                                <th colspan="5" class="cart_count">В корзине @Model.CartItems.Count товар</th>
+                            </tr>
+                            @foreach (var item in Model.CartItems)
+                            {
+                               
+
+                                <tr>
+                                    <td class="image">
+                                        <a href="products/pirog-s-kartofelem-postnyj"><img src="http://pirogi-diana.ru/files/products/ww1aq4yd2h8.50x50.jpg" alt=""></a>
+                                    </td>
+                                    <td class="name">
+                                        <a href="products/pirog-s-kartofelem-postnyj" class="">@item.ProductName</a>
+                                        <span>@item.Weight г.</span>
+                                    </td>
+                                    <td class="amount">
+                                        <div class="counter">
+                                            <div class="input-group">
+                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" onclick="$('#amounts_685').val($('#amounts_685').val()<=1 ? 1 :parseInt($('#amounts_685').val())-1).change();">–</button></span>
+                                                <input class="form-control cart-control-el counter__value" type="text" id="amounts_685" name="amounts[685]" onchange="$('#is_checkout').val('0').change();" value="@item.Count" maxlength="2" size="2">
+                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" onclick="$('#amounts_685').val($('#amounts_685').val()>=1000 ? 1000 :parseInt($('#amounts_685').val())+1).change();">+</button></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="price">
+                                        @item.TotalPrice<span class="currency"> руб.</span>
+                                    </td>
+                                    <td class="remove">
+                                        <a class="remove" title="Удалить из корзины" href="cart/remove/685" rel="685">×</a>
+                                    </td>
+                                </tr>
+                            }
+                            
+
+                            <tr class="order_amount">
+                                <td class="first_td"></td>
+                                <td class="cart_label" colspan="2">Сумма заказа:</td>
+                                <td class="cart_sum" colspan="2">@Model.TotalPrice<span class="currency">&nbsp;руб.</span></td>
+                            </tr>
+
+                            <tr class="delivery">
+                                <td class="first_td"></td>
+                                <td class="cart_label" colspan="2">Доставка:</td>
+                                <td class="cart_sum" colspan="2">
+                                    бесплатно
+                                </td>
+                            </tr>
+
+                            <tr class="total">
+                                <td class="first_td"></td>
+                                <td class="cart_label" colspan="2">Итого к оплате:</td>
+                                <td class="cart_sum" colspan="2">
+                                    @Model.TotalPrice<span class="currency">&nbsp;руб.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -154,20 +154,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart\IndexViewModel.cs" />
+    <Compile Include="Models\Cart\ViewCartModel.cs" />
+    <Compile Include="Models\Category\IndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -194,6 +202,7 @@
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\map.svg" />
     <Content Include="Content\img\phone.svg" />
+    <Content Include="Content\img\product\3.jpg" />
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
@@ -201,6 +210,7 @@
     <Content Include="Content\js\imageGallery\demo.js" />
     <Content Include="Content\js\imageGallery\jquery.blueimp-gallery.min.js" />
     <Content Include="Content\js\modernizr-custom.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Content\js\npm.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -265,6 +275,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Shared\Control\MainMenu.cshtml" />
+    <Content Include="Views\Shared\Control\TopProduct.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ViewProduct.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +290,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Irbis.DataService\Irbis.DataService.csproj">
+      <Project>{a94f9801-333e-4975-b6e5-3606df9bd3ed}</Project>
+      <Name>Irbis.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Irbis.Entities\Irbis.Entities.csproj">
+      <Project>{40bfec7e-f6f1-4eee-8986-f8b046c60ed2}</Project>
+      <Name>Irbis.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Irbis.Utils\Irbis.Utils.csproj">
+      <Project>{bd534916-cf97-4db6-b7d4-bf2fdd2f9560}</Project>
+      <Name>Irbis.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

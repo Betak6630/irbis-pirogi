@@ -25,6 +25,8 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/js")
 
 </head>
 <body>
@@ -32,23 +34,12 @@
     <header class="container-fluid header">
         <nav>
             <ul>
-                <li class="pull-right" id="menuBtn">
-                    <span></span><span></span><span></span>
-                </li>
-                <li><a href="/Home/About">О компании</a></li>
-                <li><a href="">Награды за качество</a></li>
-                <li><a href="">Оплата и доставка</a></li>
-                <li><a href="">Скидки и акции</a></li>
-                <li><a href="">Корпоративным клиентам</a></li>
-                <li><a href="">Новости</a></li>
-                <li><a href="">Отзывы</a></li>
-                <li><a href="">Контакты</a></li>
-                <li><a href="">Статьи</a></li>
+                @Html.Partial("Control/MainMenu")
             </ul>
         </nav>
     </header>
 
-    <section class="maiBbar text-center mb20">
+    <section class="maiBbar text-center mb20 container-fluid text-center">
         <div class="row">
             <div class="col-sm-4">
                 <ul>
@@ -71,21 +62,26 @@
         </div>
     </section>
 
+    <section class="container-fluid text-center">
+        <nav class="nav nav-justified navbar">
+            <ul>
+                <li><a href="/Category?page=1">Осетинские пироги</a></li>
+                @*<li><a href="/Category?page=2">Сладкие пироги</a></li>
+                <li><a href="/Category?page=4">Торты</a></li>
+                <li><a href="/Category?page=5">Обеды</a></li>
+                <li><a href="/Category?page=6">Салаты</a></li>
+                <li><a href="/Category?page=7">Напитки</a></li>*@
+            </ul>
+        </nav>
+    </section>
+
     @RenderBody()
 
 
     <nav class="container-fluid text-center">
         <ul>
             <li><a class="logoType" href="/"><img src="http://open-krasnodar.ru/subdomain_files/logotip/1942.jpg" alt="" /></a></li>
-            <li><a href="">О компании</a></li>
-            <li><a href="">Награды за качество</a></li>
-            <li><a href="">Оплата и доставка</a></li>
-            <li><a href="">Скидки и акции</a></li>
-            <li><a href="">Корпоративным клиентам</a></li>
-            <li><a href="">Новости</a></li>
-            <li><a href="">Отзывы</a></li>
-            <li><a href="">Контакты</a></li>
-            <li><a href="">Статьи</a></li>
+            @Html.Partial("Control/MainMenu")
         </ul>
     </nav>
 
