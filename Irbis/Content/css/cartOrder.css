@@ -1,0 +1,11 @@
+.cartOrder .svg.ruble {
+    margin: 0;
+}
+
+.cartOrder .table a{
+    color: #333;
+}
+
+    .cartOrder .table a:hover {
+        border-color: #000;
+    }
