@@ -1,0 +1,45 @@
+﻿@model Irbis.Models.Product
+
+<div id="product-@Model.Id" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <figure class="thumbnail cartItem">
+
+        <img src="~/Content/img/1_big.jpg" alt="...">
+
+        <figcaption class="caption">
+
+            <h3>@Model.Name</h3>
+
+            <h5 class="mb20">@Model.Description</h5>
+
+            <dl>
+                <dd>Выберите вес:</dd>
+
+                @foreach (var item in Model.Option)
+                {
+                    <dt class="radio">
+                        <label for="option_@item.Id">
+                            <input id="option_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked="" /> 
+                            &nbsp;@item.Weight г. —  <b>@item.Price <img class="svg ruble" src="/Content/img/ruble.svg" title="рублей" alt="рублей" /></b>
+                        </label>
+                    </dt>
+                }
+            </dl>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <input id="product_@(Model.Id)_count" type="number" class="form-control" name="count" value="0" min="0">
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-gold btn-sm pull-right" role="button" onclick="irbis.product.addToCart(@Model.Id)" type="button">В корзину</button>
+                </div>
+            </div>
+            
+
+            
+            
+            
+            
+            
+        </figcaption>
+    </figure>
+</div>

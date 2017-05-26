@@ -1,0 +1,17 @@
+﻿@model Irbis.Models.Category.IndexViewModel
+
+<div align="center" style="color: aliceblue; padding: 10px;">
+    <h3>@Model.Title</h3>
+</div>
+
+<section class="container-fluid body bg-white">
+    <div class="row">
+        
+        @{
+            foreach (var product in Model.Products)
+            {
+                @Html.Partial("DisplayTemplates/ViewProduct", product)
+            }
+        }
+    </div>
+</section>
