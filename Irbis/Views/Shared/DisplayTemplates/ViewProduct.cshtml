@@ -1,6 +1,6 @@
 ﻿@model Irbis.Models.Product
 
-<div id="product-@Model.Id" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+<div id="product-@Model.Id" class="col-xs-6 col-sm-4">
     <figure class="thumbnail cartItem">
 
         <img src="~/Content/img/1_big.jpg" alt="...">
@@ -33,13 +33,7 @@
                     <button class="btn btn-gold btn-sm pull-right" role="button" onclick="irbis.product.addToCart(@Model.Id)" type="button">В корзину</button>
                 </div>
             </div>
-            
 
-            
-            
-            
-            
-            
         </figcaption>
     </figure>
 </div>

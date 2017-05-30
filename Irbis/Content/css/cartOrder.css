@@ -6,6 +6,19 @@
     color: #333;
 }
 
-    .cartOrder .table a:hover {
-        border-color: #000;
+.amount .input-group .btn,
+.amount .input-group .form-control {
+    height: 30px;
+}
+
+.cartOrder .table a:hover {
+    border-color: #000;
+}
+@media all and (max-width: 450px) {
+    .container-fluid.body.cartOrder {
+        background-color: rgba(255, 255, 255, 0.9) !important;
     }
+    .input-group .form-control {
+        min-width: 40px;
+    }
+}
