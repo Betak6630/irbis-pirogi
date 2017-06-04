@@ -47,8 +47,16 @@ namespace Irbis.DataService
             string sqlQuery = "select sum(sc.Count * Price) as TotalPrice " + "from ShoppingСart sc " +
                               "join ProductOption po on po.Id = sc.ProductOptionId " + $"where Token = '{token}'";
 
-            var totalPrice = _db.ExecuteScalar<decimal>(sqlQuery);
-
+            decimal totalPrice = 0;
+            try
+            {
+                 totalPrice = _db.ExecuteScalar<decimal>(sqlQuery);
+            }
+            catch (Exception ex)
+            {
+                totalPrice = 0;
+            }
+          
             return totalPrice;
         }
     }

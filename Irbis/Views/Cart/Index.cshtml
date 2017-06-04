@@ -3,8 +3,9 @@
 <section class="container-fluid cartOrder body bg-white pb10 mb20">
 
     <h2 class="text-center">Оформление заказа</h2>
-
-    <div class="row">
+    @if (Model.CartItems.Any())
+    {
+        <div class="row">
         <div class="col-sm-6">
 
             <div>
@@ -12,59 +13,59 @@
 
                     <table class="table table-bordered" id="purchases">
                         <thead>
-                            <tr>
-                                <th colspan="5" class="cart_count">В корзине @Model.CartItems.Count товар</th>
-                            </tr>
+                        <tr>
+                            <th colspan="5" class="cart_count">В корзине @Model.CartItems.Count товар</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.CartItems)
-                            {
-                                <tr>
-                                    <td class="image">
-                                        <a href="products/pirog-s-kartofelem-postnyj"><img src="http://pirogi-diana.ru/files/products/ww1aq4yd2h8.50x50.jpg" alt=""></a>
-                                    </td>
-                                    <td class="name">
-                                        <a href="products/pirog-s-kartofelem-postnyj" class="">@item.ProductName</a>
-                                        <span>@item.Weight г.</span>
-                                    </td>
-                                    <td class="amount">
-                                        <div class="counter">
-                                            <div class="input-group">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" onclick="$('#amounts_685').val($('#amounts_685').val()<=1 ? 1 :parseInt($('#amounts_685').val())-1).change();">–</button></span>
-                                                <input class="form-control cart-control-el counter__value text-center" type="text" id="amounts_685" name="amounts[685]" onchange="$('#is_checkout').val('0').change();" value="@item.Count" maxlength="2" size="2">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" onclick="$('#amounts_685').val($('#amounts_685').val()>=1000 ? 1000 :parseInt($('#amounts_685').val())+1).change();">+</button></span>
-                                            </div>
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <tr>
+                                <td class="image">
+                                    <a href="products/pirog-s-kartofelem-postnyj"><img src="http://pirogi-diana.ru/files/products/ww1aq4yd2h8.50x50.jpg" alt=""></a>
+                                </td>
+                                <td class="name">
+                                    <a href="products/pirog-s-kartofelem-postnyj" class="">@item.ProductName</a>
+                                    <span>@item.Weight г.</span>
+                                </td>
+                                <td class="amount">
+                                    <div class="counter">
+                                        <div class="input-group">
+                                            <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" onclick="$('#amounts_685').val($('#amounts_685').val() <= 1 ? 1 : parseInt($('#amounts_685').val()) - 1).change();">–</button></span>
+                                            <input class="form-control cart-control-el counter__value text-center" type="text" id="amounts_685" name="amounts[685]" onchange="$('#is_checkout').val('0').change();" value="@item.Count" maxlength="2" size="2">
+                                            <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" onclick="$('#amounts_685').val($('#amounts_685').val() >= 1000 ? 1000 : parseInt($('#amounts_685').val()) + 1).change();">+</button></span>
                                         </div>
-                                    </td>
-                                    <td class="price">
-                                        @item.TotalPrice<span class="currency"> руб.</span>
-                                    </td>
-                                    <td class="remove">
-                                        <a class="remove" title="Удалить из корзины" href="cart/remove/685" rel="685">×</a>
-                                    </td>
-                                </tr>
-                            }
-
-                            <tr class="order_amount">
-                                <td class="cart_label text-right" colspan="3">Сумма заказа:</td>
-                                <td class="cart_sum" colspan="2"><b>@Model.TotalPrice<span class="currency">&nbsp;руб.</span></b></td>
-                            </tr>
-
-                            <tr class="delivery">
-
-                                <td class="cart_label text-right text-success" colspan="3">Доставка:</td>
-                                <td class="cart_sum text-success" colspan="2">
-                                    <b>бесплатно</b>
+                                    </div>
+                                </td>
+                                <td class="price">
+                                    @item.TotalPrice<span class="currency"> руб.</span>
+                                </td>
+                                <td class="remove">
+                                    <a class="remove" title="Удалить из корзины" href="cart/remove/685" rel="685">×</a>
                                 </td>
                             </tr>
+                        }
 
-                            <tr class="total">
+                        <tr class="order_amount">
+                            <td class="cart_label text-right" colspan="3">Сумма заказа:</td>
+                            <td class="cart_sum" colspan="2"><b>@Model.TotalPrice<span class="currency">&nbsp;руб.</span></b></td>
+                        </tr>
 
-                                <td class="cart_label text-right text-danger" colspan="3">Итого к оплате:</td>
-                                <td class="cart_sum text-danger" colspan="2">
-                                    <b>@Model.TotalPrice<span class="currency">&nbsp;руб.</span></b>
-                                </td>
-                            </tr>
+                        <tr class="delivery">
+
+                            <td class="cart_label text-right text-success" colspan="3">Доставка:</td>
+                            <td class="cart_sum text-success" colspan="2">
+                                <b>бесплатно</b>
+                            </td>
+                        </tr>
+
+                        <tr class="total">
+
+                            <td class="cart_label text-right text-danger" colspan="3">Итого к оплате:</td>
+                            <td class="cart_sum text-danger" colspan="2">
+                                <b>@Model.TotalPrice<span class="currency">&nbsp;руб.</span></b>
+                            </td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -75,107 +76,200 @@
         </div>
         <div class="col-sm-6 form-horizontal">
 
-                <div class="form-group">
-                    <div class="col-xs-8 col-xs-offset-4 col-sm-offset-3">
-                        <p>
-                            <span class="h3" style="color: #FF1414;">Хотите ускорить офромление заказа?</span>
-                            <br>Выберите свою соц. сеть и основные поля формы заполняться автоматически!
-                        </p>
-                        <!-- Ulogin -->
-                        <script src="http://ulogin.ru/js/ulogin.js"></script>
-                        <div id="uLogin" data-ulogin="display=panel;fields=first_name,last_name,email,phone,city;providers=vkontakte,facebook,odnoklassniki,mailru;hidden=other;redirect_uri=http://pirogi-diana.ru/user/login" data-ulogin-inited="1495728945737" style="position: relative;"><div class="ulogin-buttons-container" style="margin: 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: default; float: none; position: relative; display: inline-block; width: 210px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; max-width: 100%; vertical-align: top; line-height: 0;"><div class="ulogin-button-vkontakte" data-uloginbutton="vkontakte" role="button" title="VK" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -36px / 32px no-repeat;"></div><div class="ulogin-button-facebook" data-uloginbutton="facebook" role="button" title="Facebook" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -138px / 32px no-repeat;"></div><div class="ulogin-button-odnoklassniki" data-uloginbutton="odnoklassniki" role="button" title="Odnoklassniki" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -70px / 32px no-repeat;"></div><div class="ulogin-button-mailru" data-uloginbutton="mailru" role="button" title="Mail.ru" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -104px / 32px no-repeat;"></div><img class="ulogin-dropdown-button" src="https://ulogin.ru/img/blank.gif" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: none; position: relative; display: inline; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -2px / 32px no-repeat; vertical-align: baseline;"></div><img src="https://ulogin.ru/img/link.png" style="margin: 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: default; float: none; position: absolute; display: none; width: 8px; height: 4px; left: 0px; top: 0px; box-sizing: content-box; z-index: 9999;"></div>
-                        <!-- end -->
+            <div class="form-group">
+                <div class="col-xs-8 col-xs-offset-4 col-sm-offset-3">
+                    <p>
+                        <span class="h3" style="color: #FF1414;">Хотите ускорить офромление заказа?</span>
+                        <br>Выберите свою соц. сеть и основные поля формы заполняться автоматически!
+                    </p>
+                    <!-- Ulogin -->
+                    <script src="http://ulogin.ru/js/ulogin.js"></script>
+                    <div id="uLogin" data-ulogin="display=panel;fields=first_name,last_name,email,phone,city;providers=vkontakte,facebook,odnoklassniki,mailru;hidden=other;redirect_uri=http://pirogi-diana.ru/user/login" data-ulogin-inited="1495728945737" style="position: relative;">
+                        <div class="ulogin-buttons-container" style="margin: 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: default; float: none; position: relative; display: inline-block; width: 210px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; max-width: 100%; vertical-align: top; line-height: 0;">
+                            <div class="ulogin-button-vkontakte" data-uloginbutton="vkontakte" role="button" title="VK" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -36px/32px no-repeat;"></div>
+                            <div class="ulogin-button-facebook" data-uloginbutton="facebook" role="button" title="Facebook" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -138px/32px no-repeat;"></div>
+                            <div class="ulogin-button-odnoklassniki" data-uloginbutton="odnoklassniki" role="button" title="Odnoklassniki" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -70px/32px no-repeat;"></div>
+                            <div class="ulogin-button-mailru" data-uloginbutton="mailru" role="button" title="Mail.ru" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: left; position: relative; display: inherit; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -104px/32px no-repeat;"></div><img class="ulogin-dropdown-button" src="https://ulogin.ru/img/blank.gif" style="margin: 0px 10px 10px 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: pointer; float: none; position: relative; display: inline; width: 32px; height: 32px; left: 0px; top: 0px; box-sizing: content-box; background: url(&quot;https://ulogin.ru/version/2.0/img/providers-32-classic.png?version=img.2.0.0&quot;) 0px -2px/32px no-repeat; vertical-align: baseline;">
+                        </div><img src="https://ulogin.ru/img/link.png" style="margin: 0px; padding: 0px; outline: none; border: none; border-radius: 0px; cursor: default; float: none; position: absolute; display: none; width: 8px; height: 4px; left: 0px; top: 0px; box-sizing: content-box; z-index: 9999;">
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="field-name" class="control-label col-xs-4 col-sm-3"><span>Имя:</span></label>
+                <div class="col-xs-8">
+                    <input class="form-control alloka-catch-form-input-name suggestions-input" name="name" id="field-name" type="text" value="" data-notice="Введите имя" placeholder="Ваше имя" required="" autocomplete="off" style="box-sizing: border-box;">
+                    <div class="suggestions-wrapper"><span class="suggestions-addon" data-addon-type="spinner" style="left: 327px; top: -33px; height: 32px; width: 32px;"></span><ul class="suggestions-constraints" style="left: 13px; top: -17px;"></ul>
+                        <div class="suggestions-suggestions" style="position: absolute; display: none; left: 0px; top: -1px; width: 360px;"></div>
+                    </div>
+                    <div class="error-message"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field-phone" class="control-label col-xs-4 col-sm-3"><span>Телефон:</span></label>
+                <div class="col-xs-8 ">
+                    <input size="18" class="form-control phone-input-mask alloka-catch-form-input-phone" id="field-phone" type="text" value="" name="phone" placeholder="Контактный телефон" required="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field-email" class="control-label col-xs-4 col-sm-3"><span>Email:</span></label>
+                <div class="col-xs-8">
+                    <input class="form-control" id="field-email" name="email" value="" type="email" maxlength="128" data-format="email" data-notice="Введите email" placeholder="Укажите свой e-mail (по желанию)">
+
+                </div>
+            </div>
+
+            <div class="form-group" style="display: none;">
+                <label for="field-payment-method" class="control-label col-xs-4 col-sm-3"><span>Оплата:</span></label>
+                <div class="col-xs-8">
+                    <select class="form-control" name="payment_method_id" id="field-payment-method">
+                        <option value="13" selected="">
+                            Наличными курьеру
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field-delivery" class="control-label col-xs-4 col-sm-3"><span>Доставка:</span></label>
+                <div class="col-xs-8">
+                    <select class="form-control" name="delivery_id" id="field-delivery">
+                        <option value="1" selected="">
+                            В пределах МКАД (30-90 минут)
+                        </option>
+                        <option value="4">
+                            За МКАД (время уточняйте у оператора)
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address-field" class="control-label col-xs-4 col-sm-3"><span>Адрес:</span></label>
+                <div class="col-xs-8">
+                    <input class="form-control suggestions-input" id="address-field" name="address" value="" type="text" placeholder="Укажите адрес доставки" autocomplete="off" style="box-sizing: border-box;">
+                    <div class="suggestions-wrapper"><span class="suggestions-addon" data-addon-type="spinner" style="left: 327px; top: -33px; height: 32px; width: 32px;"></span><ul class="suggestions-constraints" style="left: 13px; top: -17px;"></ul>
+                        <div class="suggestions-suggestions" style="position: absolute; display: none; left: 0px; top: -1px; width: 360px;"></div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="field-name" class="control-label col-xs-4 col-sm-3"><span>Имя:</span></label>
-                    <div class="col-xs-8">
-                        <input class="form-control alloka-catch-form-input-name suggestions-input" name="name" id="field-name" type="text" value="" data-notice="Введите имя" placeholder="Ваше имя" required="" autocomplete="off" style="box-sizing: border-box;"><div class="suggestions-wrapper"><span class="suggestions-addon" data-addon-type="spinner" style="left: 327px; top: -33px; height: 32px; width: 32px;"></span><ul class="suggestions-constraints" style="left: 13px; top: -17px;"></ul><div class="suggestions-suggestions" style="position: absolute; display: none; left: 0px; top: -1px; width: 360px;"></div></div>
-                        <div class="error-message"></div>
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="field-phone" class="control-label col-xs-4 col-sm-3"><span>Телефон:</span></label>
-                    <div class="col-xs-8 ">
-                        <input size="18" class="form-control phone-input-mask alloka-catch-form-input-phone" id="field-phone" type="text" value="" name="phone" placeholder="Контактный телефон" required="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="field-email" class="control-label col-xs-4 col-sm-3"><span>Email:</span></label>
-                    <div class="col-xs-8">
-                        <input class="form-control" id="field-email" name="email" value="" type="email" maxlength="128" data-format="email" data-notice="Введите email" placeholder="Укажите свой e-mail (по желанию)">
-
-                    </div>
-                </div>
-
-                <div class="form-group" style="display: none;">
-                    <label for="field-payment-method" class="control-label col-xs-4 col-sm-3"><span>Оплата:</span></label>
-                    <div class="col-xs-8">
-                        <select class="form-control" name="payment_method_id" id="field-payment-method">
-                            <option value="13" selected="">
-                                Наличными курьеру
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="field-delivery" class="control-label col-xs-4 col-sm-3"><span>Доставка:</span></label>
-                    <div class="col-xs-8">
-                        <select class="form-control" name="delivery_id" id="field-delivery">
-                            <option value="1" selected="">
-                                В пределах МКАД (30-90 минут)
-                            </option>
-                            <option value="4">
-                                За МКАД (время уточняйте у оператора)
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="address-field" class="control-label col-xs-4 col-sm-3"><span>Адрес:</span></label>
-                    <div class="col-xs-8">
-                        <input class="form-control suggestions-input" id="address-field" name="address" value="" type="text" placeholder="Укажите адрес доставки" autocomplete="off" style="box-sizing: border-box;"><div class="suggestions-wrapper"><span class="suggestions-addon" data-addon-type="spinner" style="left: 327px; top: -33px; height: 32px; width: 32px;"></span><ul class="suggestions-constraints" style="left: 13px; top: -17px;"></ul><div class="suggestions-suggestions" style="position: absolute; display: none; left: 0px; top: -1px; width: 360px;"></div></div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="datetype-field" class="control-label col-xs-4 col-sm-3"><span>Дата и время доставки:</span></label>
-                    <div class="col-xs-8 delivery-day">
-                        <input class="" id="datetype-field" name="datetype" value="1" type="radio" checked="true">&nbsp;<label for="datetype-field">Ближайшее время</label>&nbsp;
-                        <input class="" id="datetype-field2" name="datetype" value="2" type="radio">&nbsp;<label for="datetype-field2">Предзаказ</label>
-                        <div id="pickers" style="display:none">
-                            <input class="form-control picker__input" id="datepicker" name="datepicker" value="" type="text" placeholder="Укажите дату" readonly="" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="datepicker_root"><div class="picker" id="datepicker_root" aria-hidden="true"><div class="picker__holder" tabindex="-1"><div class="picker__frame"><div class="picker__wrap"><div class="picker__box"><div class="picker__header"><div class="picker__month">мая</div><div class="picker__year">2017</div><div class="picker__nav--prev" data-nav="-1" role="button" aria-controls="datepicker_table" title="Previous month"> </div><div class="picker__nav--next" data-nav="1" role="button" aria-controls="datepicker_table" title="Next month"> </div></div><table class="picker__table" id="datepicker_table" role="grid" aria-controls="datepicker" aria-readonly="true"><thead><tr><th class="picker__weekday" scope="col" title="понедельник">пн</th><th class="picker__weekday" scope="col" title="вторник">вт</th><th class="picker__weekday" scope="col" title="среда">ср</th><th class="picker__weekday" scope="col" title="четверг">чт</th><th class="picker__weekday" scope="col" title="пятница">пт</th><th class="picker__weekday" scope="col" title="суббота">сб</th><th class="picker__weekday" scope="col" title="воскресенье">вс</th></tr></thead><tbody><tr><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1493586000000" role="gridcell" aria-label="1 мая 2017 г.">1</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1493672400000" role="gridcell" aria-label="2 мая 2017 г.">2</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1493758800000" role="gridcell" aria-label="3 мая 2017 г.">3</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1493845200000" role="gridcell" aria-label="4 мая 2017 г.">4</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1493931600000" role="gridcell" aria-label="5 мая 2017 г.">5</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494018000000" role="gridcell" aria-label="6 мая 2017 г.">6</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494104400000" role="gridcell" aria-label="7 мая 2017 г.">7</div></td></tr><tr><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494190800000" role="gridcell" aria-label="8 мая 2017 г.">8</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494277200000" role="gridcell" aria-label="9 мая 2017 г.">9</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494363600000" role="gridcell" aria-label="10 мая 2017 г.">10</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494450000000" role="gridcell" aria-label="11 мая 2017 г.">11</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494536400000" role="gridcell" aria-label="12 мая 2017 г.">12</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494622800000" role="gridcell" aria-label="13 мая 2017 г.">13</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494709200000" role="gridcell" aria-label="14 мая 2017 г.">14</div></td></tr><tr><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494795600000" role="gridcell" aria-label="15 мая 2017 г.">15</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494882000000" role="gridcell" aria-label="16 мая 2017 г.">16</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1494968400000" role="gridcell" aria-label="17 мая 2017 г.">17</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495054800000" role="gridcell" aria-label="18 мая 2017 г.">18</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495141200000" role="gridcell" aria-label="19 мая 2017 г.">19</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495227600000" role="gridcell" aria-label="20 мая 2017 г.">20</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495314000000" role="gridcell" aria-label="21 мая 2017 г.">21</div></td></tr><tr><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495400400000" role="gridcell" aria-label="22 мая 2017 г.">22</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495486800000" role="gridcell" aria-label="23 мая 2017 г.">23</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495573200000" role="gridcell" aria-label="24 мая 2017 г.">24</div></td><td role="presentation"><div class="picker__day picker__day--infocus picker__day--today picker__day--highlighted" data-pick="1495659600000" role="gridcell" aria-label="25 мая 2017 г." aria-activedescendant="true">25</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495746000000" role="gridcell" aria-label="26 мая 2017 г.">26</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495832400000" role="gridcell" aria-label="27 мая 2017 г.">27</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1495918800000" role="gridcell" aria-label="28 мая 2017 г.">28</div></td></tr><tr><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1496005200000" role="gridcell" aria-label="29 мая 2017 г.">29</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1496091600000" role="gridcell" aria-label="30 мая 2017 г.">30</div></td><td role="presentation"><div class="picker__day picker__day--infocus" data-pick="1496178000000" role="gridcell" aria-label="31 мая 2017 г.">31</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496264400000" role="gridcell" aria-label="1 июня 2017 г.">1</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496350800000" role="gridcell" aria-label="2 июня 2017 г.">2</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496437200000" role="gridcell" aria-label="3 июня 2017 г.">3</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496523600000" role="gridcell" aria-label="4 июня 2017 г.">4</div></td></tr><tr><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496610000000" role="gridcell" aria-label="5 июня 2017 г.">5</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496696400000" role="gridcell" aria-label="6 июня 2017 г.">6</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496782800000" role="gridcell" aria-label="7 июня 2017 г.">7</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496869200000" role="gridcell" aria-label="8 июня 2017 г.">8</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1496955600000" role="gridcell" aria-label="9 июня 2017 г.">9</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1497042000000" role="gridcell" aria-label="10 июня 2017 г.">10</div></td><td role="presentation"><div class="picker__day picker__day--outfocus" data-pick="1497128400000" role="gridcell" aria-label="11 июня 2017 г.">11</div></td></tr></tbody></table><div class="picker__footer"><button class="picker__button--today" type="button" data-pick="1495659600000" disabled="" aria-controls="datepicker">сегодня</button><button class="picker__button--clear" type="button" data-clear="1" disabled="" aria-controls="datepicker">удалить</button><button class="picker__button--close" type="button" data-close="true" disabled="" aria-controls="datepicker">закрыть</button></div></div></div></div></div></div><input type="hidden" name="datepicker_submit">
-                            <input class="form-control picker__input" id="timepicker" name="timepicker" value="" type="text" placeholder="Укажите время" readonly="" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="timepicker_root"><div class="picker picker--time" id="timepicker_root" aria-hidden="true"><div class="picker__holder" tabindex="-1" style=""><div class="picker__frame"><div class="picker__wrap"><div class="picker__box"><ul class="picker__list" role="listbox" aria-controls="timepicker"><li class="picker__list-item" data-pick="480" role="option" aria-label="08:00">08:00</li><li class="picker__list-item" data-pick="510" role="option" aria-label="08:30">08:30</li><li class="picker__list-item" data-pick="540" role="option" aria-label="09:00">09:00</li><li class="picker__list-item" data-pick="570" role="option" aria-label="09:30">09:30</li><li class="picker__list-item" data-pick="600" role="option" aria-label="10:00">10:00</li><li class="picker__list-item" data-pick="630" role="option" aria-label="10:30">10:30</li><li class="picker__list-item" data-pick="660" role="option" aria-label="11:00">11:00</li><li class="picker__list-item" data-pick="690" role="option" aria-label="11:30">11:30</li><li class="picker__list-item" data-pick="720" role="option" aria-label="12:00">12:00</li><li class="picker__list-item" data-pick="750" role="option" aria-label="12:30">12:30</li><li class="picker__list-item" data-pick="780" role="option" aria-label="13:00">13:00</li><li class="picker__list-item" data-pick="810" role="option" aria-label="13:30">13:30</li><li class="picker__list-item" data-pick="840" role="option" aria-label="14:00">14:00</li><li class="picker__list-item" data-pick="870" role="option" aria-label="14:30">14:30</li><li class="picker__list-item" data-pick="900" role="option" aria-label="15:00">15:00</li><li class="picker__list-item" data-pick="930" role="option" aria-label="15:30">15:30</li><li class="picker__list-item" data-pick="960" role="option" aria-label="16:00">16:00</li><li class="picker__list-item" data-pick="990" role="option" aria-label="16:30">16:30</li><li class="picker__list-item" data-pick="1020" role="option" aria-label="17:00">17:00</li><li class="picker__list-item" data-pick="1050" role="option" aria-label="17:30">17:30</li><li class="picker__list-item" data-pick="1080" role="option" aria-label="18:00">18:00</li><li class="picker__list-item" data-pick="1110" role="option" aria-label="18:30">18:30</li><li class="picker__list-item" data-pick="1140" role="option" aria-label="19:00">19:00</li><li class="picker__list-item picker__list-item--highlighted picker__list-item--viewset" data-pick="1170" role="option" aria-label="19:30" aria-activedescendant="true">19:30</li><li class="picker__list-item" data-pick="1200" role="option" aria-label="20:00">20:00</li><li class="picker__list-item" data-pick="1230" role="option" aria-label="20:30">20:30</li><li class="picker__list-item" data-pick="1260" role="option" aria-label="21:00">21:00</li><li class="picker__list-item" data-pick="1290" role="option" aria-label="21:30">21:30</li><li class="picker__list-item" data-pick="1320" role="option" aria-label="22:00">22:00</li><li role="presentation"><button class="picker__button--clear" type="button" data-clear="1" disabled="" aria-controls="timepicker">удалить</button></li></ul></div></div></div></div></div>
+            <div class="form-group">
+                <label for="datetype-field" class="control-label col-xs-4 col-sm-3"><span>Дата и время доставки:</span></label>
+                <div class="col-xs-8 delivery-day">
+                    <input class="" id="datetype-field" name="datetype" value="1" type="radio" checked="true">&nbsp;<label for="datetype-field">Ближайшее время</label>&nbsp;
+                    <input class="" id="datetype-field2" name="datetype" value="2" type="radio">&nbsp;<label for="datetype-field2">Предзаказ</label>
+                    <div id="pickers" style="display: none">
+                        <input class="form-control picker__input" id="datepicker" name="datepicker" value="" type="text" placeholder="Укажите дату" readonly="" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="datepicker_root">
+                        <div class="picker" id="datepicker_root" aria-hidden="true">
+                            <div class="picker__holder" tabindex="-1">
+                                <div class="picker__frame">
+                                    <div class="picker__wrap">
+                                        <div class="picker__box">
+                                            <div class="picker__header">
+                                                <div class="picker__month">мая</div>
+                                                <div class="picker__year">2017</div>
+                                                <div class="picker__nav--prev" data-nav="-1" role="button" aria-controls="datepicker_table" title="Previous month"> </div>
+                                                <div class="picker__nav--next" data-nav="1" role="button" aria-controls="datepicker_table" title="Next month"> </div>
+                                            </div><table class="picker__table" id="datepicker_table" role="grid" aria-controls="datepicker" aria-readonly="true"><thead><tr><th class="picker__weekday" scope="col" title="понедельник">пн</th><th class="picker__weekday" scope="col" title="вторник">вт</th><th class="picker__weekday" scope="col" title="среда">ср</th><th class="picker__weekday" scope="col" title="четверг">чт</th><th class="picker__weekday" scope="col" title="пятница">пт</th><th class="picker__weekday" scope="col" title="суббота">сб</th><th class="picker__weekday" scope="col" title="воскресенье">вс</th></tr></thead><tbody><tr><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1493586000000" role="gridcell" aria-label="1 мая 2017 г.">1</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1493672400000" role="gridcell" aria-label="2 мая 2017 г.">2</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1493758800000" role="gridcell" aria-label="3 мая 2017 г.">3</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1493845200000" role="gridcell" aria-label="4 мая 2017 г.">4</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1493931600000" role="gridcell" aria-label="5 мая 2017 г.">5</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494018000000" role="gridcell" aria-label="6 мая 2017 г.">6</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494104400000" role="gridcell" aria-label="7 мая 2017 г.">7</div></td></tr><tr><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494190800000" role="gridcell" aria-label="8 мая 2017 г.">8</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494277200000" role="gridcell" aria-label="9 мая 2017 г.">9</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494363600000" role="gridcell" aria-label="10 мая 2017 г.">10</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494450000000" role="gridcell" aria-label="11 мая 2017 г.">11</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494536400000" role="gridcell" aria-label="12 мая 2017 г.">12</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494622800000" role="gridcell" aria-label="13 мая 2017 г.">13</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494709200000" role="gridcell" aria-label="14 мая 2017 г.">14</div></td></tr><tr><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494795600000" role="gridcell" aria-label="15 мая 2017 г.">15</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494882000000" role="gridcell" aria-label="16 мая 2017 г.">16</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1494968400000" role="gridcell" aria-label="17 мая 2017 г.">17</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495054800000" role="gridcell" aria-label="18 мая 2017 г.">18</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495141200000" role="gridcell" aria-label="19 мая 2017 г.">19</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495227600000" role="gridcell" aria-label="20 мая 2017 г.">20</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495314000000" role="gridcell" aria-label="21 мая 2017 г.">21</div></td></tr><tr><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495400400000" role="gridcell" aria-label="22 мая 2017 г.">22</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495486800000" role="gridcell" aria-label="23 мая 2017 г.">23</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495573200000" role="gridcell" aria-label="24 мая 2017 г.">24</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus picker__day--today picker__day--highlighted" data-pick="1495659600000" role="gridcell" aria-label="25 мая 2017 г." aria-activedescendant="true">25</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495746000000" role="gridcell" aria-label="26 мая 2017 г.">26</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495832400000" role="gridcell" aria-label="27 мая 2017 г.">27</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1495918800000" role="gridcell" aria-label="28 мая 2017 г.">28</div></td></tr><tr><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1496005200000" role="gridcell" aria-label="29 мая 2017 г.">29</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1496091600000" role="gridcell" aria-label="30 мая 2017 г.">30</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--infocus" data-pick="1496178000000" role="gridcell" aria-label="31 мая 2017 г.">31</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496264400000" role="gridcell" aria-label="1 июня 2017 г.">1</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496350800000" role="gridcell" aria-label="2 июня 2017 г.">2</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496437200000" role="gridcell" aria-label="3 июня 2017 г.">3</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496523600000" role="gridcell" aria-label="4 июня 2017 г.">4</div></td></tr><tr><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496610000000" role="gridcell" aria-label="5 июня 2017 г.">5</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496696400000" role="gridcell" aria-label="6 июня 2017 г.">6</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496782800000" role="gridcell" aria-label="7 июня 2017 г.">7</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496869200000" role="gridcell" aria-label="8 июня 2017 г.">8</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1496955600000" role="gridcell" aria-label="9 июня 2017 г.">9</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1497042000000" role="gridcell" aria-label="10 июня 2017 г.">10</div></td><td role="presentation">
+                                                <div class="picker__day picker__day--outfocus" data-pick="1497128400000" role="gridcell" aria-label="11 июня 2017 г.">11</div></td></tr></tbody></table>
+                                            <div class="picker__footer"><button class="picker__button--today" type="button" data-pick="1495659600000" disabled="" aria-controls="datepicker">сегодня</button><button class="picker__button--clear" type="button" data-clear="1" disabled="" aria-controls="datepicker">удалить</button><button class="picker__button--close" type="button" data-close="true" disabled="" aria-controls="datepicker">закрыть</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><input type="hidden" name="datepicker_submit">
+                        <input class="form-control picker__input" id="timepicker" name="timepicker" value="" type="text" placeholder="Укажите время" readonly="" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="timepicker_root">
+                        <div class="picker picker--time" id="timepicker_root" aria-hidden="true">
+                            <div class="picker__holder" tabindex="-1" style="">
+                                <div class="picker__frame">
+                                    <div class="picker__wrap">
+                                        <div class="picker__box"><ul class="picker__list" role="listbox" aria-controls="timepicker"><li class="picker__list-item" data-pick="480" role="option" aria-label="08:00">08:00</li><li class="picker__list-item" data-pick="510" role="option" aria-label="08:30">08:30</li><li class="picker__list-item" data-pick="540" role="option" aria-label="09:00">09:00</li><li class="picker__list-item" data-pick="570" role="option" aria-label="09:30">09:30</li><li class="picker__list-item" data-pick="600" role="option" aria-label="10:00">10:00</li><li class="picker__list-item" data-pick="630" role="option" aria-label="10:30">10:30</li><li class="picker__list-item" data-pick="660" role="option" aria-label="11:00">11:00</li><li class="picker__list-item" data-pick="690" role="option" aria-label="11:30">11:30</li><li class="picker__list-item" data-pick="720" role="option" aria-label="12:00">12:00</li><li class="picker__list-item" data-pick="750" role="option" aria-label="12:30">12:30</li><li class="picker__list-item" data-pick="780" role="option" aria-label="13:00">13:00</li><li class="picker__list-item" data-pick="810" role="option" aria-label="13:30">13:30</li><li class="picker__list-item" data-pick="840" role="option" aria-label="14:00">14:00</li><li class="picker__list-item" data-pick="870" role="option" aria-label="14:30">14:30</li><li class="picker__list-item" data-pick="900" role="option" aria-label="15:00">15:00</li><li class="picker__list-item" data-pick="930" role="option" aria-label="15:30">15:30</li><li class="picker__list-item" data-pick="960" role="option" aria-label="16:00">16:00</li><li class="picker__list-item" data-pick="990" role="option" aria-label="16:30">16:30</li><li class="picker__list-item" data-pick="1020" role="option" aria-label="17:00">17:00</li><li class="picker__list-item" data-pick="1050" role="option" aria-label="17:30">17:30</li><li class="picker__list-item" data-pick="1080" role="option" aria-label="18:00">18:00</li><li class="picker__list-item" data-pick="1110" role="option" aria-label="18:30">18:30</li><li class="picker__list-item" data-pick="1140" role="option" aria-label="19:00">19:00</li><li class="picker__list-item picker__list-item--highlighted picker__list-item--viewset" data-pick="1170" role="option" aria-label="19:30" aria-activedescendant="true">19:30</li><li class="picker__list-item" data-pick="1200" role="option" aria-label="20:00">20:00</li><li class="picker__list-item" data-pick="1230" role="option" aria-label="20:30">20:30</li><li class="picker__list-item" data-pick="1260" role="option" aria-label="21:00">21:00</li><li class="picker__list-item" data-pick="1290" role="option" aria-label="21:30">21:30</li><li class="picker__list-item" data-pick="1320" role="option" aria-label="22:00">22:00</li><li role="presentation"><button class="picker__button--clear" type="button" data-clear="1" disabled="" aria-controls="timepicker">удалить</button></li></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="sdacha-field" class="control-label col-xs-4 col-sm-3"><span>Сдача с:</span></label>
-                    <div class="col-xs-5 col-sm-4">
-                        <input class="form-control" id="sdacha-field" name="sdacha" value="" type="text" placeholder="Укажите сумму">
-                    </div>
-                    <div class="form-control-static grey">руб.</div>
+            <div class="form-group">
+                <label for="sdacha-field" class="control-label col-xs-4 col-sm-3"><span>Сдача с:</span></label>
+                <div class="col-xs-5 col-sm-4">
+                    <input class="form-control" id="sdacha-field" name="sdacha" value="" type="text" placeholder="Укажите сумму">
                 </div>
+                <div class="form-control-static grey">руб.</div>
+            </div>
 
-                <div class="form-group">
-                    <label for="order_comment" class="control-label col-xs-4 col-sm-3"><span>Комментарий:</span></label>
-                    <div class="col-xs-8">
-                        <textarea class="form-control" name="comment" id="order_comment" placeholder="Можете указать любой комментарий"></textarea>
-                    </div>
+            <div class="form-group">
+                <label for="order_comment" class="control-label col-xs-4 col-sm-3"><span>Комментарий:</span></label>
+                <div class="col-xs-8">
+                    <textarea class="form-control" name="comment" id="order_comment" placeholder="Можете указать любой комментарий"></textarea>
                 </div>
+            </div>
 
-                <div class="form-group" style="margin-top: 25px;">
-                    <div class="col-xs-8 col-xs-offset-3">
-                        <input type="submit" name="checkout" id="button_checkout" class="btn btn-gold btn-lg" value="Оформить заказ">
-                    </div>
+            <div class="form-group" style="margin-top: 25px;">
+                <div class="col-xs-8 col-xs-offset-3">
+                    <input type="submit" name="checkout" id="button_checkout" class="btn btn-gold btn-lg" value="Оформить заказ">
                 </div>
-            
+            </div>
+
 
         </div>
-    </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                В корзине нет товаров
+            </div>
+        </div>
+    }
+
 </section>
