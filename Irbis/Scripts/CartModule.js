@@ -2,5 +2,10 @@
 
     .controller('cartCtr', ['$scope', function ($scope) {
 
-        $scope.title = "Привет";
+        $scope.model.product= {
+            Id: 0,
+            Name: '',
+            Description: '',
+
+        }
     }]);

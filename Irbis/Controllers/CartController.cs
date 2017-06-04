@@ -32,13 +32,20 @@ namespace Irbis.Controllers
                 token = Guid.Parse(tokenStr);
             }
 
+            var model = GetCart(token);
+
+            return View(model);
+        }
+
+        private Models.Cart.IndexViewModel GetCart(Guid token)
+        {
             var data = _сartDataService.GetByToken(token);
 
             var totalPrice = _сartDataService.GetTotalPriceByToken(token);
 
             var model = new Models.Cart.IndexViewModel();
 
-            model.CartItems=new List<ViewCartModel>();
+            model.CartItems = new List<ViewCartModel>();
             foreach (var item in data)
             {
                 model.CartItems.Add(new ViewCartModel()
@@ -54,9 +61,8 @@ namespace Irbis.Controllers
             }
 
             model.TotalPrice = totalPrice;
-            
 
-            return View(model);
+            return model;
         }
 
         [HttpPost]
