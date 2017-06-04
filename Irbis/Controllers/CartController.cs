@@ -107,5 +107,20 @@ namespace Irbis.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetCart()
+        {
+            var tokenStr = Request.Cookies["token"]?.Value;
+            var token = Guid.Empty;
+
+            if (tokenStr != null && !tokenStr.IsEmpty())
+            {
+                token = Guid.Parse(tokenStr);
+            }
+
+            var model = GetCart(token);
+
+            return Json(model , JsonRequestBehavior.AllowGet);
+        }
     }
 }
