@@ -80,8 +80,11 @@ namespace Irbis.Controllers
                     token = Guid.Parse(tokenStr);
                 }
 
-                _сartDataService.AddProductToCart(token, productId, optionProduct, countProduct);
-                result = true;
+                if (countProduct > 0)
+                {
+                    _сartDataService.AddProductToCart(token, productId, optionProduct, countProduct);
+                    result = true;
+                }
             }
             catch (Exception)
             {
@@ -91,6 +94,22 @@ namespace Irbis.Controllers
             return Json(result);
         }
 
+        [HttpPost]
+        public void RemoveProduct(int productId)
+        {
+            var tokenStr = Request.Cookies["token"]?.Value;
+            var token = Guid.Empty;
+
+            if (tokenStr != null && !tokenStr.IsEmpty())
+            {
+                token = Guid.Parse(tokenStr);
+            }
+
+            if (productId > 0)
+            {
+                _сartDataService.RemoveProductToCart(token, productId);
+            }
+        }
 
         [HttpGet]
         public JsonResult GetСartByToken()
@@ -120,7 +139,7 @@ namespace Irbis.Controllers
 
             var model = GetCart(token);
 
-            return Json(model , JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

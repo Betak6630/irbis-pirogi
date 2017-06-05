@@ -4,7 +4,7 @@
     <h3>@Model.Title</h3>
 </div>
 
-<section class="container-fluid body bg-white">
+<section class="container-fluid body bg-white" ng-controller="cartCtr">
     <div class="row">
         <div class="col-sm-9">
 
@@ -22,50 +22,67 @@
         </div>
 
         <div class="col-sm-3">
-            <aside ng-controller="cartCtr">
+            <aside>
                 <div id="cart-holder" style="position: static; top: auto; width: 251px; margin-top: 0px;">
-                    <div id="cart_informer">
+                    
+                    <div ng-if="model.CartItems.length>0" id="cart_informer">
                         <div class="cart box">
                             <div class="cart__header">
-                                <div class="cart__title">В корзине <span class="txt-danger"><span id="total_products">6</span> товаров</span></div>
+                                <div class="cart__title">В корзине <span class="txt-danger"><span id="total_products">{{model.CartItems.length}}</span> товаров</span>
+                                </div>
                             </div>
 
                             <form method="post" name="cart" id="form_cart">
 
                                 <ul class="cart__items list-unstyled" style="overflow: inherit; max-height: inherit;">
-                                    <li class="cart__item">
-                                        <a class="cart__control remove" title="Удалить из корзины" href="cart/remove/699" rel="699">×</a>
+                                    <li ng-repeat="item in model.CartItems" class="cart__item">
+
+                                        <button type="button" class="cart__control remove" title="Удалить из корзины" ng-click="events.removeProduct(item.ProductId)">X</button>
 
                                         <div class="cart__item-title">
-                                            <span class="cart__item-name"><a href="products/pirog-s-rublennoj-baraninoj">Пирог с рубленной бараниной</a></span>
-                                            <span class="cart__item-info">1200 г.</span>
+                                            <span class="cart__item-name"><a href="products/pirog-s-rublennoj-baraninoj">{{item.ProductName}}</a></span>
+                                            <span class="cart__item-info">{{item.Weight}} г.</span>
                                         </div>
 
-                                        <div class="cart__item-price">2 700<span class="currency"> руб.</span></div>
+                                        <div class="cart__item-price">{{item.TotalPrice}}<span class="currency"> руб.</span>
+                                        </div>
 
                                         <div class="counter">
                                             <div class="input-group">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" onclick="$('#amounts_699').val($('#amounts_699').val()<=1 ? 1 :parseInt($('#amounts_699').val())-1).change();">–</button></span>
-                                                <input class="form-control cart-control-el counter__value" type="text" id="amounts_699" name="amounts[699]" onchange="$('#form_cart').submit();" value="3" maxlength="2" size="2">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" onclick="$('#amounts_699').val($('#amounts_699').val()>=1000 ? 1000 :parseInt($('#amounts_699').val())+1).change();">+</button></span>
+                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control">–</button></span>
+                                                <input class="form-control cart-control-el counter__value" type="text" id="amounts_699" name="amounts[699]" onchange="$('#form_cart').submit();" value="{{item.Count}}" maxlength="2" size="2">
+                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control">+</button></span>
                                             </div>
                                         </div>
                                     </li>
-                                  
+
                                 </ul>
                                 <div class="cart__total">
-                                    <span class="cart__total-label">Итого к оплате:</span><span class="cart__total-value">4 800<span class="currency">&nbsp;руб.</span></span>
+                                    <span class="cart__total-label">Итого к оплате:</span><span class="cart__total-value">{{model.TotalPrice}}<span class="currency">&nbsp;руб.</span></span>
                                 </div>
                             </form>
 
                             <div class="cart__submit" style="text-align: center;">
-                                <a class="btn btn-gold" address="1" delivery="0" href="/cart">Оформить заказ</a>
+                                <button class="btn btn-gold" address="1" delivery="0" ng-click="events.checkout()">Оформить заказ</button>
+                                @*<a class="btn btn-gold" address="1" delivery="0" href="/cart" ng-clcked="events.checkout()">Оформить заказ</a>*@
                             </div>
                         </div>
-
-
-
                     </div>
+
+                    <div ng-if="model.CartItems.length <= 0" id="cart_informer">
+                        <div class="cart box">
+                            <div class="cart__header">
+                                <div class="cart__title"><span id="total_products" style="display: none;">0</span>Ваша корзина пуста
+                                </div>
+                            </div>
+                            <div class="cart__message cart__message_clear">
+
+                                <img src="~/Content/img/empty_cart.png" alt="">
+                                <p>Добавьте что-нибудь в корзину...</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </aside>
         </div>

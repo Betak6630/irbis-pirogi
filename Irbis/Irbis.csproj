@@ -198,6 +198,7 @@
     <Content Include="Content\img\1_big.jpg" />
     <Content Include="Content\img\clock.svg" />
     <Content Include="Content\img\delivery.svg" />
+    <Content Include="Content\img\empty_cart.png" />
     <Content Include="Content\img\gmail.svg" />
     <Content Include="Content\img\htmlBg.jpg" />
     <Content Include="Content\img\instagram.svg" />

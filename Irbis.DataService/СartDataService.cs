@@ -29,6 +29,12 @@ namespace Irbis.DataService
 
         }
 
+        public void RemoveProductToCart(Guid token, int productId)
+        {
+            string sqlQuery = $"delete from ShoppingСart where Token = '{token}' and ProductId={productId}";
+            _db.Execute(sqlQuery);
+        }
+
         public IEnumerable<ViewCart> GetByToken(Guid token)
         {
             string sqlQuery =
