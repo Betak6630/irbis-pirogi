@@ -95,7 +95,7 @@ namespace Irbis.Controllers
         }
 
         [HttpPost]
-        public void RemoveProduct(int productId)
+        public void RemoveProduct(int productId, int optionProductId)
         {
             var tokenStr = Request.Cookies["token"]?.Value;
             var token = Guid.Empty;
@@ -107,7 +107,7 @@ namespace Irbis.Controllers
 
             if (productId > 0)
             {
-                _сartDataService.RemoveProductToCart(token, productId);
+                _сartDataService.RemoveProductToCart(token, productId, optionProductId);
             }
         }
 

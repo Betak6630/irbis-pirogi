@@ -25,13 +25,30 @@ namespace Irbis.DataService
                 CreatedAt = DateTime.Now
             };
 
-            _db.Insert("ShoppingСart", "Id", shoppingCart);
+            string sqlQuery =
+                $"select count(1) from ShoppingСart where Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
+
+            var result = _db.ExecuteScalar<int>(sqlQuery);
+
+            if (result > 0)
+            {
+                var sqlUpdate =
+                    $"update ShoppingСart set Count=Count+{shoppingCart.Count} where  Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
+
+                _db.Execute(sqlUpdate);
+            }
+            else
+            {
+                _db.Insert("ShoppingСart", "Id", shoppingCart);
+            }
+
+            
 
         }
 
-        public void RemoveProductToCart(Guid token, int productId)
+        public void RemoveProductToCart(Guid token, int productId, int optionProductId)
         {
-            string sqlQuery = $"delete from ShoppingСart where Token = '{token}' and ProductId={productId}";
+            string sqlQuery = $"delete from ShoppingСart where Token = '{token}' and ProductId={productId} and ProductOptionId={optionProductId}";
             _db.Execute(sqlQuery);
         }
 

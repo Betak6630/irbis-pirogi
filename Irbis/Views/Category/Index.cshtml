@@ -37,7 +37,7 @@
                                 <ul class="cart__items list-unstyled" style="overflow: inherit; max-height: inherit;">
                                     <li ng-repeat="item in model.CartItems" class="cart__item">
 
-                                        <button type="button" class="cart__control remove" title="Удалить из корзины" ng-click="events.removeProduct(item.ProductId)">X</button>
+                                        <button type="button" class="cart__control remove" title="Удалить из корзины" ng-click="events.removeProduct(item)">X</button>
 
                                         <div class="cart__item-title">
                                             <span class="cart__item-name"><a href="products/pirog-s-rublennoj-baraninoj">{{item.ProductName}}</a></span>
@@ -49,9 +49,9 @@
 
                                         <div class="counter">
                                             <div class="input-group">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control">–</button></span>
-                                                <input class="form-control cart-control-el counter__value" type="text" id="amounts_699" name="amounts[699]" onchange="$('#form_cart').submit();" value="{{item.Count}}" maxlength="2" size="2">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control">+</button></span>
+                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" >–</button></span>
+                                                <input class="form-control cart-control-el counter__value" type="text"  value="{{item.Count}}" maxlength="2" size="2">
+                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" ng-click="events.addProduct(item)">+</button></span>
                                             </div>
                                         </div>
                                     </li>
@@ -63,7 +63,7 @@
                             </form>
 
                             <div class="cart__submit" style="text-align: center;">
-                                <button class="btn btn-gold" address="1" delivery="0" ng-click="events.checkout()">Оформить заказ</button>
+                                <a class="btn btn-gold" address="1" delivery="0" href="/cart">Оформить заказ</a>
                                 @*<a class="btn btn-gold" address="1" delivery="0" href="/cart" ng-clcked="events.checkout()">Оформить заказ</a>*@
                             </div>
                         </div>

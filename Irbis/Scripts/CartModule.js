@@ -6,48 +6,60 @@
             cartItems: null
         };
 
+      
+
         var load = function () {
             return CartNetworkServices.getCart(function (data) {
                 $scope.model = data;
-                console.log($scope.model);
             });
         }
 
         load();
 
+        function addProduct(product) {
+
+            CartNetworkServices.addProduct({ productId: product.productId, optionProduct: product.optionProduct, countProduct: product.countProduct },
+
+                function () {
+                    load();
+                });
+        }
+
         $scope.events = {
             checkout: function () {
-                load();
-                console.log("Clicked button checkout");
+                load(product);
             },
             addToCart: function (productId) {
-
-                var product = $("#product-" + productId);
 
                 var optionProduct = $('input[name="option_' + productId + '"]:checked').val();
                 var countProduct = $("#product_" + productId + "_count").val();
 
-                console.info("Add product to ShoppingCart");
-                console.log("ProductId: " + productId);
-                console.log("OptionProduct: " + optionProduct);
-                console.log("CountProduct: " + countProduct);
+                var product = {
+                    productId: productId,
+                    optionProduct: optionProduct,
+                    countProduct: countProduct
+                };
 
-                CartNetworkServices.addProduct({ productId: productId, optionProduct: optionProduct, countProduct },
+                addProduct(product);
+            },
+            removeProduct: function (p) {
 
-                    function (response) {
-                        console.log(response);
+                CartNetworkServices.removeProduct({ productId: p.ProductId, optionProductId: p.ProductOptionId },
+
+                    function () {
                         load();
                     });
 
             },
-            removeProduct: function (productId) {
+            addProduct: function (p) {
 
-                CartNetworkServices.removeProduct({ productId: productId},
+                var product = {
+                    productId: p.ProductId,
+                    optionProduct: p.ProductOptionId,
+                    countProduct: 1
+                };
 
-                    function () {
-                        console.log("Product Id=" + productId + " has been removed from the cart");
-                        load();
-                    }); 
+                addProduct(product);
             }
         }
 
