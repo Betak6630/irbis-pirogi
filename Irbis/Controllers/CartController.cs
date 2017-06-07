@@ -95,6 +95,34 @@ namespace Irbis.Controllers
         }
 
         [HttpPost]
+        public JsonResult UpdateProduct(int productId, int optionProduct, int countProduct)
+        {
+            bool result = false;
+
+            var tokenStr = Request.Cookies["token"]?.Value;
+            var token = Guid.Empty;
+
+            try
+            {
+                if (tokenStr != null && !tokenStr.IsEmpty())
+                {
+                    token = Guid.Parse(tokenStr);
+                }
+
+
+                _сartDataService.UpdateProductToCart(token, productId, optionProduct, countProduct);
+                result = true;
+
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return Json(result);
+        }
+
+        [HttpPost]
         public void RemoveProduct(int productId, int optionProductId)
         {
             var tokenStr = Request.Cookies["token"]?.Value;

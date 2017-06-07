@@ -49,9 +49,9 @@
 
                                         <div class="counter">
                                             <div class="input-group">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" >–</button></span>
+                                                <span class="input-group-btn"><button type="button"  ng-disabled="{{buttons.minus.disabled}}" class="btn counter__decrease cart-control" ng-click="events.updateProduct(item,'minus')">–</button></span>
                                                 <input class="form-control cart-control-el counter__value" type="text"  value="{{item.Count}}" maxlength="2" size="2">
-                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" ng-click="events.addProduct(item)">+</button></span>
+                                                <span class="input-group-btn"><button type="button" class="btn counter__increase cart-control" ng-click="events.updateProduct(item,'plus')">+</button></span>
                                             </div>
                                         </div>
                                     </li>

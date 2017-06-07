@@ -25,31 +25,30 @@ namespace Irbis.DataService
                 CreatedAt = DateTime.Now
             };
 
-            string sqlQuery =
-                $"select count(1) from ShoppingСart where Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
-
-            var result = _db.ExecuteScalar<int>(sqlQuery);
-
-            if (result > 0)
-            {
-                var sqlUpdate =
-                    $"update ShoppingСart set Count=Count+{shoppingCart.Count} where  Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
-
-                _db.Execute(sqlUpdate);
-            }
-            else
-            {
-                _db.Insert("ShoppingСart", "Id", shoppingCart);
-            }
-
-            
-
+            _db.Insert("ShoppingСart", "Id", shoppingCart);
         }
 
         public void RemoveProductToCart(Guid token, int productId, int optionProductId)
         {
             string sqlQuery = $"delete from ShoppingСart where Token = '{token}' and ProductId={productId} and ProductOptionId={optionProductId}";
             _db.Execute(sqlQuery);
+        }
+
+        public void UpdateProductToCart(Guid token, int productId, int productOptionId, int count)
+        {
+            string sqlQuery =
+              $"select count(1) from ShoppingСart where Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
+
+            var result = _db.ExecuteScalar<int>(sqlQuery);
+
+            if (result > 0)
+            {
+                var sqlUpdate =
+                    $"update ShoppingСart set Count=Count+{count} where  Token='{token}' and  ProductId={productId} and ProductOptionId={productOptionId}";
+
+                _db.Execute(sqlUpdate);
+            }
+            
         }
 
         public IEnumerable<ViewCart> GetByToken(Guid token)
@@ -73,13 +72,13 @@ namespace Irbis.DataService
             decimal totalPrice = 0;
             try
             {
-                 totalPrice = _db.ExecuteScalar<decimal>(sqlQuery);
+                totalPrice = _db.ExecuteScalar<decimal>(sqlQuery);
             }
             catch (Exception ex)
             {
                 totalPrice = 0;
             }
-          
+
             return totalPrice;
         }
     }

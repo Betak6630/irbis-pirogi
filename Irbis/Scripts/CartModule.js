@@ -6,7 +6,14 @@
             cartItems: null
         };
 
-      
+        $scope.buttons = {
+            plus: {
+                enabled: true
+            },
+            minus: {
+                disabled: false
+            }
+        }
 
         var load = function () {
             return CartNetworkServices.getCart(function (data) {
@@ -22,6 +29,18 @@
 
                 function () {
                     load();
+                });
+        }
+
+        function updateProduct(product) {
+
+           
+
+            CartNetworkServices.updateProduct({ productId: product.productId, optionProduct: product.optionProduct, countProduct: product.countProduct },
+
+                function () {
+                    load();
+                    $scope.buttons.minus.disabled = false;
                 });
         }
 
@@ -60,6 +79,26 @@
                 };
 
                 addProduct(product);
+            },
+            updateProduct: function (p, command) {
+                $scope.buttons.minus.disabled = true;
+                var count = 0;
+
+                if (command === "plus" && p.Count < 50) {
+                    count++;
+                }
+
+                if (command === "minus" && p.Count > 1) {
+                    count--;
+                }
+
+                var product = {
+                    productId: p.ProductId,
+                    optionProduct: p.ProductOptionId,
+                    countProduct: count
+                };
+
+                updateProduct(product);
             }
         }
 

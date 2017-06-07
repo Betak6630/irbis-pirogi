@@ -7,7 +7,8 @@
                 {
                     getCart: { params: { action: 'GetCart' }, method: 'GET' },
                     addProduct: { params: { action: 'AddProduct' }, method: 'POST' },
-                    removeProduct: { params: { action: 'RemoveProduct' }, method: 'POST' }
+                    removeProduct: { params: { action: 'RemoveProduct' }, method: 'POST' },
+                    updateProduct: { params: { action: 'UpdateProduct' }, method: 'POST' }
                 });
         }
     ]);
