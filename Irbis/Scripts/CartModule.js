@@ -4,7 +4,18 @@
 
         $scope.model = {
             cartItems: null
+
         };
+
+        $scope.checkoutModel= {
+            user: {
+                name: "",
+                phone: "",
+                email: "",
+                address: "",
+                comment: ""
+            }
+        }
 
         $scope.buttons = {
             plus: {
@@ -46,9 +57,6 @@
         }
 
         $scope.events = {
-            checkout: function () {
-                load(product);
-            },
             addToCart: function (productId) {
 
                 var optionProduct = $('input[name="option_' + productId + '"]:checked').val();
@@ -104,6 +112,7 @@
             checkout: function() {
                 console.log("checkout");
                 console.log($scope.model);
+                console.log($scope.checkoutModel);
 
             }
         }
