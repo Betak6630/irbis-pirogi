@@ -18,6 +18,7 @@
         var load = function () {
             return CartNetworkServices.getCart(function (data) {
                 $scope.model = data;
+                console.log($scope.model);
             });
         }
 
@@ -99,6 +100,11 @@
                 };
 
                 updateProduct(product);
+            },
+            checkout: function() {
+                console.log("checkout");
+                console.log($scope.model);
+
             }
         }
 
