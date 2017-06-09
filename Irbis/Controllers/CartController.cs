@@ -139,6 +139,21 @@ namespace Irbis.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult Checkout(string name, string phone, string address, string comment)
+        {
+            var tokenStr = Request.Cookies["token"]?.Value;
+            var token = Guid.Empty;
+
+            if (tokenStr != null && !tokenStr.IsEmpty())
+            {
+                token = Guid.Parse(tokenStr);
+            }
+
+
+            return Json(new object());
+        }
+
         [HttpGet]
         public JsonResult GetСartByToken()
         {

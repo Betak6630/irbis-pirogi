@@ -56,6 +56,15 @@
                 });
         }
 
+        function checkout(user) {
+
+            CartNetworkServices.checkout({ name: user.name, phone: user.phone, address: user.address, comment: user.comment },
+
+                function () {
+                   
+                });
+        }
+
         $scope.events = {
             addToCart: function (productId) {
 
@@ -111,9 +120,7 @@
             },
             checkout: function() {
                 console.log("checkout");
-                console.log($scope.model);
-                console.log($scope.checkoutModel);
-
+                checkout($scope.checkoutModel.user);
             }
         }
 

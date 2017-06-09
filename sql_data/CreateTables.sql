@@ -45,8 +45,23 @@
   --CreatedAt datetime not null default getdate()
   --)
 
+  --go
+  --create table [Order]
+  --(
+  --Id int PRIMARY KEY IDENTITY(1,1) not null,
+  --Token uniqueidentifier not null FOREIGN KEY REFERENCES Token(Id),
+  --ProductId int not null,
+  --ProductOptionId int not null,
+  --Count int not null,
+  --UserName nvarchar(50) not null,
+  --UserPhone nvarchar(20) not null,
+  --UserAddress nvarchar(255) not null,
+  --UserComment nvarchar(255) null,
+  --CreatedAt datetime not null
+  --)
+
   select * from Shopping—art
 
 
+  select * from [Order]
 
-  
