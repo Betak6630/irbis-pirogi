@@ -13,13 +13,14 @@ namespace Irbis.DataService
         public ProductDataService ProductDataService { get; private set; }
         public TokenDataService TokenDataService { get; private set; }
         public СartDataService СartDataService { get; private set; }
+        public OrderDataService OrderDataService { get; private set; }
 
         public Init(string nameConnectionString= "DefaultConnection")
         {
             _providerPoco = new Database(nameConnectionString);
             ProductDataService = new ProductDataService(_providerPoco);
             TokenDataService = new TokenDataService(_providerPoco);
-            СartDataService = new СartDataService(_providerPoco);
+            OrderDataService = new OrderDataService(_providerPoco);
         }
     }
 }
