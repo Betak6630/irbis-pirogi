@@ -20,6 +20,7 @@ namespace Irbis.DataService
             _providerPoco = new Database(nameConnectionString);
             ProductDataService = new ProductDataService(_providerPoco);
             TokenDataService = new TokenDataService(_providerPoco);
+            СartDataService = new СartDataService(_providerPoco);
             OrderDataService = new OrderDataService(_providerPoco);
         }
     }

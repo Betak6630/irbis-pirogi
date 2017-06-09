@@ -81,5 +81,14 @@ namespace Irbis.DataService
 
             return totalPrice;
         }
+
+        public IEnumerable<ShoppingСart> GetShoppingСart(Guid token)
+        {
+            var sqlQuery = $"select * from ShoppingСart where Token='{token}'";
+
+            var data = _db.Query<ShoppingСart>(sqlQuery).ToList();
+
+            return data;
+        }
     }
 }

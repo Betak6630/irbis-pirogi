@@ -150,6 +150,7 @@ namespace Irbis.Controllers
                 token = Guid.Parse(tokenStr);
             }
 
+            var data = _сartDataService.GetShoppingСart(token);
 
             return Json(new object());
         }
