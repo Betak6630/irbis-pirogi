@@ -1,4 +1,7 @@
-﻿using PetaPoco;
+﻿using System;
+using System.Collections.Generic;
+using Irbis.Entities;
+using PetaPoco;
 
 namespace Irbis.DataService
 {
@@ -9,6 +12,12 @@ namespace Irbis.DataService
         public OrderDataService(Database db)
         {
             _db = db;
+        }
+
+
+        public void SaveOrder(IEnumerable<ShoppingСart> shoppingСarts, User user, Guid token)
+        {
+            ;
         }
     }
 }

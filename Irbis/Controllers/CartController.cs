@@ -16,11 +16,13 @@ namespace Irbis.Controllers
     public class CartController : Controller
     {
         private readonly СartDataService _сartDataService;
+        private readonly OrderDataService _orderDataService;
 
         public CartController()
         {
             var dataService = new Irbis.DataService.Init();
             _сartDataService = dataService.СartDataService;
+            _orderDataService = dataService.OrderDataService;
         }
         public ActionResult Index()
         {
@@ -150,8 +152,16 @@ namespace Irbis.Controllers
                 token = Guid.Parse(tokenStr);
             }
 
-            var data = _сartDataService.GetShoppingСart(token);
+            var user = new Irbis.Entities.User()
+            {
+                Name = name,
+                Phone = phone,
+                Address = address,
+                Comment = comment
+            };
 
+            var data = _сartDataService.GetShoppingСart(token);
+            _orderDataService.SaveOrder(data, user, token);
             return Json(new object());
         }
 
