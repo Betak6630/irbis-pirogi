@@ -20,19 +20,19 @@
                                 <tbody>
                                     <tr>
                                         <td>Дата заказа</td>
-                                        <td>12.06.2017 в 09:38</td>
+                                        <td>@Model.CreatedAt</td>
                                     </tr>
                                     <tr>
                                         <td>Имя</td>
-                                        <td>Алберт</td>
+                                        <td>@Model.User.Name</td>
                                     </tr>
                                     <tr>
                                         <td>Телефон</td>
-                                        <td>8 (999) 999-33-33</td>
+                                        <td>@Model.User.Phone</td>
                                     </tr>
                                     <tr>
                                         <td>Адрес доставки</td>
-                                        <td>г Москва </td>
+                                        <td>@Model.User.Address</td>
                                     </tr>
                                     <tr>
                                         <td>Дата и время доставки</td>
@@ -40,7 +40,7 @@
                                     </tr>
                                     <tr>
                                         <td>Комментарий&nbsp;&nbsp;</td>
-                                        <td>Как так?</td>
+                                        <td>@Model.User.Comment</td>
                                     </tr>
                                 </tbody>
                             </table>

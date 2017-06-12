@@ -35,7 +35,26 @@ namespace Irbis.Controllers
 
             var dateTime = _orderDataService.GetLastDateTimeOrder(token);
 
-            var data = _orderDataService.GetOrder(token, dateTime);
+            var data = _orderDataService.GetOrder(token, dateTime).ToList();
+
+            if (data.Any())
+            {
+                var firstElement = data.FirstOrDefault();
+
+                if (firstElement != null)
+                {
+                    viewModel.User = new UserModel()
+                    {
+                        Name = firstElement.UserName,
+                        Phone = firstElement.UserPhone,
+                        Address = firstElement.UserAddress,
+                        Comment = firstElement.UserComment
+                    };
+
+                    viewModel.CreatedAt = firstElement.CreatedAt;
+                }
+                   
+            }
 
             return View(viewModel);
         }
