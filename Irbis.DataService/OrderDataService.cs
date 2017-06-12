@@ -43,7 +43,7 @@ namespace Irbis.DataService
         {
             string sqlQuery = "SELECT o.Token, o.UserName, o.UserPhone, o.UserAddress, o.UserComment, o.ProductId, " +
                               "p.NAME AS ProductName, o.ProductOptionId, po.Weight, p.ProductTypeId, " +
-                              "sum(o.Count) AS Count, sum(o.Count * po.Price) AS TotalPrice, o.CreatedAt " +
+                              "po.Price, sum(o.Count) AS Count, sum(o.Count * po.Price) AS TotalPrice, o.CreatedAt " +
                               "FROM[Order] o JOIN Product p ON o.ProductId = p.Id " +
                               "JOIN ProductOption po ON po.Id = o.ProductOptionId " +
                               "WHERE token = @token and o.createdAt=@createdAt " +

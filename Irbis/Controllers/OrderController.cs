@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using Irbis.DataService;
 using Irbis.Models;
+using Irbis.Models.Order;
 using IndexViewModel = Irbis.Models.Order.IndexViewModel;
 
 namespace Irbis.Controllers
@@ -53,7 +54,33 @@ namespace Irbis.Controllers
 
                     viewModel.CreatedAt = firstElement.CreatedAt;
                 }
-                   
+
+                viewModel.Orders = new List<OrderViewModel>();
+
+                foreach (var item in data)
+                {
+                    viewModel.Orders.Add(new OrderViewModel()
+                    {
+                        Token = item.Token,
+                        UserName = item.UserName,
+                        UserPhone = item.UserPhone,
+                        UserAddress = item.UserAddress,
+                        UserComment = item.UserComment,
+                        ProductId = item.ProductId,
+                        ProductName = item.ProductName,
+                        ProductOptionId = item.ProductOptionId,
+                        Weight = item.Weight,
+                        ProductTypeId = item.ProductTypeId,
+                        Price = item.Price,
+                        Count = item.Count,
+                        TotalPrice = item.TotalPrice,
+                        CreatedAt = item.CreatedAt
+                    });
+
+                    viewModel.TotalPrice += item.TotalPrice;
+                }
+
+                 
             }
 
             return View(viewModel);

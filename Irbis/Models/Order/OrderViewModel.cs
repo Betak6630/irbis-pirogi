@@ -17,6 +17,7 @@ namespace Irbis.Models.Order
         public int ProductOptionId { get; set; }
         public double Weight { get; set; }
         public int ProductTypeId { get; set; }
+        public decimal Price { get; set; }
         public int Count { get; set; }
         public decimal TotalPrice { get; set; }
         public DateTime CreatedAt { get; set; }

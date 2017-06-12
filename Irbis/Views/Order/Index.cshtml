@@ -5,13 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-
                 <h1>
                     Спасибо! Ваш заказ #1845 принят
                 </h1>
-                <p>В ближайшее время мы свяжемся с Вами чтобы согласовать время доставки</p>
-
-                <div class="row" style="margin-top:40px;">
+                <h4>В ближайшее время мы свяжемся с Вами чтобы согласовать время доставки</h4>
+                <div class="row" style="margin-top:5px;">
                     <div class="col-xs-12 col-sm-12 col-md-5">
 
                         <h3>Детали заказа</h3>
@@ -46,7 +44,7 @@
                             </table>
                         </div>
 
-                    </div> <!-- class="col-xs-12 col-sm-12 col-md-6" -->
+                    </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-7">
                         <h3>Вы заказали:</h3>
@@ -60,40 +58,41 @@
                                         <th>Стоимость</th>
                                         <th>Удалить</th>
                                     </tr>
-                                    <tr>
-                                        <td class="image">
-                                            <a href="products/pirog-s-kartofelem-myasom-i-gribami"><img src="http://pirogi-diana.ru/files/products/pirog.50x50.jpg" alt=""></a>
-                                        </td>
-                                        <td class="name">
-                                            <a href="/products/pirog-s-kartofelem-myasom-i-gribami">Пирог с картофелем, мясом и грибами</a>
-                                            <span>1200 г.</span>
-                                        </td>
-                                        <td class="price">
-                                            700&nbsp;руб.
-                                        </td>
-                                        <td class="amount">
-                                            ×&nbsp;2&nbsp;шт
-                                        </td>
-                                        <td class="price">
-                                            1 400&nbsp;руб.
-                                        </td>
-                                    </tr>
+                                    @{
+                                        foreach (var item in Model.Orders)
+                                        {
+                                            <tr>
+                                                <td class="image">
+                                                    <a href="products/pirog-s-kartofelem-myasom-i-gribami"><img src="http://pirogi-diana.ru/files/products/pirog.50x50.jpg" alt=""></a>
+                                                </td>
+                                                <td class="name">
+                                                    <a href="/products/pirog-s-kartofelem-myasom-i-gribami">@item.ProductName</a>
+                                                    <span>@item.Weight г.</span>
+                                                </td>
+                                                <td class="price">
+                                                    @item.Price&nbsp;руб.
+                                                </td>
+                                                <td class="amount">
+                                                    ×&nbsp;@item.Count&nbsp;шт
+                                                </td>
+                                                <td class="price">
+                                                    @item.TotalPrice&nbsp;руб.
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
 
 
                                     <tr class="order_amount">
                                         <td class="cart_label" colspan="4">Сумма заказа:</td>
-                                        <td class="cart_sum">1 400<span class="currency">&nbsp;руб.</span></td>
+                                        <td class="cart_sum">@Model.TotalPrice<span class="currency">&nbsp;руб.</span></td>
                                     </tr>
-
-
-
-
-
 
                                     <tr class="total">
                                         <td class="cart_label" colspan="4">Итого к оплате:</td>
                                         <td class="cart_sum">
-                                            1 400<span class="currency">&nbsp;руб.</span>
+                                            @Model.TotalPrice<span class="currency">&nbsp;руб.</span>
                                         </td>
                                     </tr>
 
@@ -102,10 +101,10 @@
                             </table>
                         </div>
                     </div>
-                </div> <!-- class="row" -->
+                </div>
 
             </div>
-        </div> <!-- .row -->
+        </div>
     </div>
 
 </section>

@@ -9,5 +9,7 @@ namespace Irbis.Models.Order
     {
         public UserModel User { get; set; }
         public DateTime CreatedAt { get; set; }
+        public List<OrderViewModel> Orders { get; set; }
+        public Decimal TotalPrice { get; set; }
     }
 }
