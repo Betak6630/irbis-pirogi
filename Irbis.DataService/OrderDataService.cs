@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Irbis.Entities;
 using PetaPoco;
 
@@ -36,6 +37,23 @@ namespace Irbis.DataService
                 scope.Complete();
 
             }
+        }
+
+        public IEnumerable<ViewOrder> GetOrder(Guid token, DateTime createdAt)
+        {
+            string sqlQuery = "SELECT o.Token, o.UserName, o.UserPhone, o.UserAddress, o.UserComment, o.ProductId, " +
+                              "p.NAME AS ProductName, o.ProductOptionId, po.Weight, p.ProductTypeId, " +
+                              "sum(o.Count) AS Count, sum(o.Count * po.Price) AS TotalPrice, o.CreatedAt " +
+                              "FROM[Order] o JOIN Product p ON o.ProductId = p.Id " +
+                              "JOIN ProductOption po ON po.Id = o.ProductOptionId " +
+                              $"WHERE Token = '{token}'and and o.CreatedAt='{createdAt}' " +
+                              "GROUP BY o.Token, o.UserName, o.UserPhone, o.UserAddress, o.UserComment, " +
+                              "o.ProductId, o.ProductOptionId, o.CreatedAt, p.NAME, p.ProductTypeId, " +
+                              "po.Weight, po.Price";
+
+            var data = _db.Query<ViewOrder>(sqlQuery).ToList();
+
+            return data;
         }
     }
 }
