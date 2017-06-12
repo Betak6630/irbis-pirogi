@@ -90,5 +90,11 @@ namespace Irbis.DataService
 
             return data;
         }
+
+        public void Clear(Guid token)
+        {
+            var query = $"delete from ShoppingСart where Token='{token}'";
+            _db.Execute(query);
+        }
     }
 }
