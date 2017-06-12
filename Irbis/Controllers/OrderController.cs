@@ -33,7 +33,9 @@ namespace Irbis.Controllers
                 token = Guid.Parse(tokenStr);
             }
 
-            var data = _orderDataService.GetOrder(token, DateTime.Now);
+            var dateTime = _orderDataService.GetLastDateTimeOrder(token);
+
+            var data = _orderDataService.GetOrder(token, dateTime);
 
             return View(viewModel);
         }

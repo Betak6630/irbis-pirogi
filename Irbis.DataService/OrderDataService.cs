@@ -46,14 +46,24 @@ namespace Irbis.DataService
                               "sum(o.Count) AS Count, sum(o.Count * po.Price) AS TotalPrice, o.CreatedAt " +
                               "FROM[Order] o JOIN Product p ON o.ProductId = p.Id " +
                               "JOIN ProductOption po ON po.Id = o.ProductOptionId " +
-                              $"WHERE Token = '{token}'and and o.CreatedAt='{createdAt}' " +
+                              "WHERE token = @token and o.createdAt=@createdAt " +
                               "GROUP BY o.Token, o.UserName, o.UserPhone, o.UserAddress, o.UserComment, " +
                               "o.ProductId, o.ProductOptionId, o.CreatedAt, p.NAME, p.ProductTypeId, " +
                               "po.Weight, po.Price";
 
-            var data = _db.Query<ViewOrder>(sqlQuery).ToList();
+            var data = _db.Query<ViewOrder>(sqlQuery, new {token= token, createdAt = createdAt}).ToList();
 
             return data;
+        }
+
+        public DateTime GetLastDateTimeOrder(Guid token)
+        {
+            var query = "select top 1 CreatedAt from [Order] where  " +
+                        $"Token = '{token}' order by CreatedAt desc";
+
+            var dateTime = _db.ExecuteScalar<DateTime>(query);
+
+            return dateTime;
         }
     }
 }
