@@ -60,8 +60,8 @@
 
             CartNetworkServices.checkout({ name: user.name, phone: user.phone, address: user.address, comment: user.comment },
 
-                function () {
-                   
+                function (response) {
+                    location.href = "/order";
                 });
         }
 
@@ -119,7 +119,6 @@
                 updateProduct(product);
             },
             checkout: function() {
-                console.log("checkout");
                 checkout($scope.checkoutModel.user);
             }
         }

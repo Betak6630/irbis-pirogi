@@ -163,8 +163,8 @@ namespace Irbis.Controllers
             var data = _сartDataService.GetShoppingСart(token);
             _orderDataService.SaveOrder(data, user, token);
             _сartDataService.Clear(token);
-
-            return Json(new object());
+           
+            return Json(true);
         }
 
         [HttpGet]
