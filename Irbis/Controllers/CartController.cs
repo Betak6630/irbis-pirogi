@@ -9,6 +9,7 @@ using Irbis.DataService;
 using Irbis.Entities;
 using Irbis.Models;
 using Irbis.Models.Cart;
+using Irbis.Utils.Helpers;
 using IndexViewModel = Irbis.Models.Category.IndexViewModel;
 
 namespace Irbis.Controllers
@@ -164,6 +165,7 @@ namespace Irbis.Controllers
             _orderDataService.SaveOrder(data, user, token);
             _сartDataService.Clear(token);
            
+            TelegramBot.SendMessageOrder("Заказ пирогов оформлен");
             return Json(true);
         }
 

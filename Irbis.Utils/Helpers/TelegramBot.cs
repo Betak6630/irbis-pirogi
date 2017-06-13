@@ -17,7 +17,7 @@ namespace Irbis.Utils.Helpers
             try
             {
                 var client = new RestClient("https://api.telegram.org");
-                client.Execute(RequestBuilder(Groups.Order, message.ToString()));
+                client.Execute(RequestBuilder(Groups.Order, text));
             }
             catch
             {
