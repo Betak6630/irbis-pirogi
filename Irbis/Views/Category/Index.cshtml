@@ -23,7 +23,7 @@
 
         <div class="col-sm-3">
             <aside>
-                <div id="cart-holder" style="position: static; top: auto; width: 251px; margin-top: 0px;">
+                <div id="cart-holder">
                     
                     <div ng-if="model.CartItems.length>0" id="cart_informer">
                         <div class="cart box">
@@ -37,7 +37,9 @@
                                 <ul class="cart__items list-unstyled" style="overflow: inherit; max-height: inherit;">
                                     <li ng-repeat="item in model.CartItems" class="cart__item">
 
-                                        <button type="button" class="cart__control remove" title="Удалить из корзины" ng-click="events.removeProduct(item)">X</button>
+                                        
+
+                                        <a class="cart__control remove" title="Удалить из корзины" ng-click="events.removeProduct(item)" >×</a>
 
                                         <div class="cart__item-title">
                                             <span class="cart__item-name"><a href="products/pirog-s-rublennoj-baraninoj">{{item.ProductName}}</a></span>

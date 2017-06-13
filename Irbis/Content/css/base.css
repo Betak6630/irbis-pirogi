@@ -1,23 +1,4 @@
-﻿/*! Common */
-html, body {
-    width: 100%;
-    position: relative
-}
-
-html {
-    height: 100%
-}
-
-body {
-    min-height: 100%;
-    /*background: #f5f5f5 url("../images/body_bg.png");*/
-    color: #252525;
-    padding-bottom: 40px;
-    font-family: 'Roboto',sans-serif;
-    font-size: 14px;
-    line-height: 1.428571429;
-}
-
+﻿
 a {
     outline: 0 none !important;
     cursor: pointer
@@ -1603,38 +1584,6 @@ section.products:before {
     margin-top: 50px;
 }
 
-.footer {
-    background: #2f2f2f;
-    padding: 20px 0;
-    font-size: 14px;
-    position: absolute;
-    z-index: 4;
-    width: 100%;
-    bottom: 0;
-    left: 0
-}
-
-    .footer, .footer a {
-        color: #b0b7bd
-    }
-
-        .footer a {
-            text-decoration: none;
-            border-bottom: 1px solid #72787C;
-            -webkit-transition: all 0.3s;
-            -o-transition: all 0.3s;
-            transition: all 0.3s;
-        }
-
-            .footer a:hover {
-                color: #fff;
-                text-decoration: none;
-                border-color: #fff;
-            }
-
-        .footer .row {
-            margin-bottom: 0
-        }
 
 .footer-menu__item-link {
     text-transform: uppercase
@@ -1757,12 +1706,17 @@ section.products:before {
 }
 
 .top-panel {
+    background-color: dimgray;
     position: relative;
     z-index: 2;
-    background: #2f2f2f;
     padding: 4px 0 6px;
     font-size: 14px;
-    height: 32px
+}
+
+@media all and (min-width: 992px) {
+    .top-panel {
+        background-color: transparent;
+    }
 }
 
 .logo {
@@ -2949,6 +2903,8 @@ section.products:before {
         position: fixed;
         width: 100%;
         top: 0;
+        left:0;
+        right: 0;
     }
 
         .top-panel .container {
@@ -3041,7 +2997,7 @@ section.products:before {
         }
 
             .table-responsive > .table > thead > tr > th, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tfoot > tr > td {
-                white-space: nowrap
+                white-space: normal
             }
 
         .table-responsive > .table-bordered {
@@ -3748,6 +3704,18 @@ ul{
 	padding: 0;
 	margin: 0;
 }
+
+@media all and (max-width: 320px) {
+    .hide320 {
+        display: none;
+    }
+}
+@media all and (max-width: 480px) {
+    .hide480 {
+        display: none;
+    }
+}
+
 /* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */
 /* ~^v~^v~^v~^v~^v~^v~^v~ BTNS v~^v~^v~^v~^v~^v~^v~^v~ */
 /* ~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v~^v */

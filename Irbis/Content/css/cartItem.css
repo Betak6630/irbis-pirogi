@@ -2,3 +2,7 @@ figure.cartItem .svg {
     width: 12px;
     margin: 0; 
 }
+
+figcaption.caption .col-xs-6 {
+    width: 50%;
+}

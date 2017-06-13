@@ -10,10 +10,6 @@ header nav{
 	max-height: 50px;
 	overflow: hidden;
 }
-	header nav .pull-right{
-		padding-top: 8px;
-		width: 30px;
-	}
 	header nav .pull-right span{
 		display: block;
 		width: 30px;
@@ -32,6 +28,15 @@ nav .logoType img {
     max-height: 20px;
 }
 
+section.maiBbar {
+    display: none;
+}
+
+@media all and (min-width: 768px){
+    section.maiBbar {
+        display: block;
+    }
+}
 
 @media all and (min-width: 1000px) {
     header nav {
