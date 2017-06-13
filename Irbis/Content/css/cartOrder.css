@@ -19,6 +19,6 @@
         background-color: rgba(255, 255, 255, 0.9) !important;
     }
     .input-group .form-control {
-        min-width: 40px;
+        width: 20px;
     }
 }

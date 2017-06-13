@@ -20,14 +20,14 @@
 
                             <tr ng-repeat="item in model.CartItems">
 
-                                <td class="image">
+                                <td class="image hide320">
                                     <a href="products/pirog-s-kartofelem-postnyj"><img src="http://pirogi-diana.ru/files/products/ww1aq4yd2h8.50x50.jpg" alt=""></a>
                                 </td>
-                                <td class="name">
+                                <td class="name" width="10%">
                                     <a href="products/pirog-s-kartofelem-postnyj" class="">{{item.ProductName}}</a>
                                     <span>{{item.Weight}} г.</span>
                                 </td>
-                                <td class="amount">
+                                <td class="amount" width="5%">
                                     <div class="counter">
                                         <div class="input-group">
                                             <span class="input-group-btn"><button type="button" class="btn counter__decrease cart-control" ng-disabled="{{buttons.minus.disabled}}" ng-click="events.updateProduct(item,'minus')">–</button></span>
@@ -36,10 +36,10 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">
+                                <td class="price" width="20%">
                                     {{item.TotalPrice}}<span class="currency"> руб.</span>
                                 </td>
-                                <td class="remove">
+                                <td class="remove text-center" width="5%">
                                     <a class="remove" title="Удалить из корзины" ng-click="events.removeProduct(item)">×</a>
                                 </td>
                             </tr>
@@ -47,13 +47,13 @@
 
                             <tr class="order_amount">
                                 <td class="cart_label text-right" colspan="3">Сумма заказа:</td>
-                                <td class="cart_sum" colspan="2"><b>{{model.TotalPrice}}<span class="currency">&nbsp;руб.</span></b></td>
+                                <td class="cart_sum"><b>{{model.TotalPrice}}<span class="currency">&nbsp;руб.</span></b></td>
                             </tr>
 
                             <tr class="delivery">
 
                                 <td class="cart_label text-right text-success" colspan="3">Доставка:</td>
-                                <td class="cart_sum text-success" colspan="2">
+                                <td class="cart_sum text-success">
                                     <b>бесплатно</b>
                                 </td>
                             </tr>
@@ -61,7 +61,7 @@
                             <tr class="total">
 
                                 <td class="cart_label text-right text-danger" colspan="3">Итого к оплате:</td>
-                                <td class="cart_sum text-danger" colspan="2">
+                                <td class="cart_sum text-danger">
                                     <b>{{model.TotalPrice}}<span class="currency">&nbsp;руб.</span></b>
                                 </td>
                             </tr>

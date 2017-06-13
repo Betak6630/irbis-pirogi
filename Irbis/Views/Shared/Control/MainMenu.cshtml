@@ -1,16 +1,41 @@
 ﻿
-<li class="pull-right" id="menuBtn">
-    <span></span><span></span><span></span>
-</li>
-<li><a href="#">Доставка</a></li>
-<li><a href="/Home/About">Банкеты</a></li>
-<li><a href="/Home/About">О компании</a></li>
-@*<li><a href="">Награды за качество</a></li>
-@*<li><a href="">Награды за качество</a></li>
-    <li><a href="">Оплата и доставка</a></li>
-    <li><a href="">Скидки и акции</a></li>
-    <li><a href="">Корпоративным клиентам</a></li>
-    <li><a href="">Новости</a></li>
-    <li><a href="">Отзывы</a></li>*@
-<li><a href="/Home/Contact">Контакты</a></li>
-@*                <li><a href="">Статьи</a></li>*@
+<div class="top-panel">
+    <div class="container">
+        <div class="row hidden-xs hidden-sm">
+            <div class="col-xs-12">
+                <div class="top-menu">
+                    <ul id="menu" class="clearfix">
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="/Home/About">Банкеты</a></li>
+                        <li><a href="/Home/About">О компании</a></li>
+                        <li><a href="/Home/Contact">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- /hidden-xs -->
+
+        <div class="visible-xs visible-sm pull-left">
+            <div class="quick-cart pull-left">
+                <div class="quickaccess-toggle" data-toggle="modal" data-target="#modal_cart">
+                    <i class="icon-shopping-basket"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="visible-xs visible-sm pull-right">
+            <div class="quick-access pull-left">
+                <div class="quickaccess-toggle">
+                    <i class="icon-menu"></i>
+                </div>
+                <div class="inner-toggle top-menu">
+                    <ul class="links pull-left">
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="/Home/About">Банкеты</a></li>
+                        <li><a href="/Home/About">О компании</a></li>
+                        <li><a href="/Home/Contact">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- /visible-xs -->
+    </div>
+</div>
