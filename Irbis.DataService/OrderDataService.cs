@@ -25,14 +25,14 @@ namespace Irbis.DataService
             {
                 sqlInsert += $"insert into [Order] Values('{shoppingСart.Token}', {shoppingСart.ProductId}, " +
                                 $"{shoppingСart.ProductOptionId}, {shoppingСart.Count}, '{user.Name}', '{user.Phone}'," +
-                                $"'{user.Address}', '{user.Comment}','{now}')\n";
+                                $"'{user.Address}', '{user.Comment}', @now)\n";
             }
 
 
             using (var scope = _db.GetTransaction())
             {
                 // Do transacted updates here
-                _db.Execute(sqlInsert);
+                _db.Execute(sqlInsert, new { now = now });
                 // Commit
                 scope.Complete();
 
@@ -51,7 +51,7 @@ namespace Irbis.DataService
                               "o.ProductId, o.ProductOptionId, o.CreatedAt, p.NAME, p.ProductTypeId, " +
                               "po.Weight, po.Price";
 
-            var data = _db.Query<ViewOrder>(sqlQuery, new {token= token, createdAt = createdAt}).ToList();
+            var data = _db.Query<ViewOrder>(sqlQuery, new { token = token, createdAt = createdAt }).ToList();
 
             return data;
         }
@@ -59,7 +59,7 @@ namespace Irbis.DataService
         public DateTime GetLastDateTimeOrder(Guid token)
         {
             var query = "select top 1 CreatedAt from [Order] where  " +
-                        $"Token = '{token}' order by CreatedAt desc";
+                        $"Token = '{token}' order by CreatedAt";
 
             var dateTime = _db.ExecuteScalar<DateTime>(query);
 
