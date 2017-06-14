@@ -27,7 +27,13 @@
 
             <div class="row">
                 <div class="col-xs-6">
-                    <input id="product_@(Model.Id)_count" type="number" class="form-control" name="count" value="1" min="1">
+                    <div class="counter">
+                        <div class="input-group">
+                            <span class="input-group-btn"><button type="button" class="btn counter__decrease" ng-click="events.minus(@Model.Id)" style="height: 30px;">-</button></span>
+                            <input class="form-control counter__value"  id="product_@(Model.Id)_count" type="text" value="1" readonly maxlength="2" size="2" style="height: 30px; text-align: center; width: 35px;">
+                            <span class="input-group-btn"><button type="button" class="btn counter__decrease" ng-click="events.plus(@Model.Id)" style="height: 30px;">+</button></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-gold btn-sm pull-right" role="button" ng-click="events.addToCart(@Model.Id)" type="button">В корзину</button>

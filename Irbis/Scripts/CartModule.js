@@ -4,7 +4,6 @@
 
         $scope.model = {
             cartItems: null
-
         };
 
         $scope.checkoutModel= {
@@ -16,6 +15,8 @@
                 comment: ""
             }
         }
+
+
 
         $scope.buttons = {
             plus: {
@@ -63,7 +64,7 @@
                 function (response) {
                     location.href = "/order";
                 });
-        }
+        };
 
         $scope.events = {
             addToCart: function (productId) {
@@ -120,6 +121,29 @@
             },
             checkout: function() {
                 checkout($scope.checkoutModel.user);
+            },
+            plus: function (id) {
+                var input = $("#product_"+id+"_count");
+                var val = input.val();
+
+                if (val >= 50) {
+                    return;
+                }
+
+                val++;
+                input.val(val);
+            },
+            minus: function (id) {
+
+                var input = $("#product_"+id+"_count");
+                var val = input.val();
+
+                if (val == 1) {
+                    return;
+                }
+
+                val--;
+                input.val(val);
             }
         }
 

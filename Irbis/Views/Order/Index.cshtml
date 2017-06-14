@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>
-                    Спасибо! Ваш заказ #1845 принят
+                    Спасибо! Ваш заказ принят
                 </h1>
                 <h4>В ближайшее время мы свяжемся с Вами чтобы согласовать время доставки</h4>
                 <div class="row" style="margin-top:5px;">
@@ -62,12 +62,11 @@
                                         foreach (var item in Model.Orders)
                                         {
                                             <tr>
-                                                <td class="image">
+                                                @*<td class="image">
                                                     <a href="products/pirog-s-kartofelem-myasom-i-gribami"><img src="http://pirogi-diana.ru/files/products/pirog.50x50.jpg" alt=""></a>
-                                                </td>
+                                                </td>*@
                                                 <td class="name">
-                                                    <a href="/products/pirog-s-kartofelem-myasom-i-gribami">@item.ProductName</a>
-                                                    <span>@item.Weight г.</span>
+                                                   @item.ProductName @item.Weight г. 
                                                 </td>
                                                 <td class="price">
                                                     @item.Price&nbsp;руб.
@@ -85,12 +84,12 @@
 
 
                                     <tr class="order_amount">
-                                        <td class="cart_label" colspan="4">Сумма заказа:</td>
+                                        <td class="cart_label" colspan="3">Сумма заказа:</td>
                                         <td class="cart_sum">@Model.TotalPrice<span class="currency">&nbsp;руб.</span></td>
                                     </tr>
 
                                     <tr class="total">
-                                        <td class="cart_label" colspan="4">Итого к оплате:</td>
+                                        <td class="cart_label" colspan="3">Итого к оплате:</td>
                                         <td class="cart_sum">
                                             @Model.TotalPrice<span class="currency">&nbsp;руб.</span>
                                         </td>
