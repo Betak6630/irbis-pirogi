@@ -1067,6 +1067,7 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Home\Delivery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
