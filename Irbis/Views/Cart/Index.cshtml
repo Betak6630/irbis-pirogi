@@ -75,7 +75,7 @@
         </div>
         <div class="col-sm-6 form-horizontal">
 
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="col-xs-8 col-xs-offset-4 col-sm-offset-3">
                     <p>
                         <span class="h3" style="color: #FF1414;">Хотите ускорить офромление заказа?</span>
@@ -93,7 +93,7 @@
                     </div>
                     <!-- end -->
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label for="field-name" class="control-label col-xs-4 col-sm-3"><span>Имя:</span></label>
                 <div class="col-xs-8">
@@ -109,7 +109,8 @@
             <div class="form-group">
                 <label for="field-phone" class="control-label col-xs-4 col-sm-3"><span>Телефон:</span></label>
                 <div class="col-xs-8 ">
-                    <input size="18" class="form-control phone-input-mask alloka-catch-form-input-phone" id="field-phone" type="text" ng-model="checkoutModel.user.phone"   placeholder="Контактный телефон">
+                   
+                    <input type="text" size="18" class="form-control phone-input-mask alloka-catch-form-input-phone" id="field-phone" ng-model="checkoutModel.user.phone" ui-mask="8(999) 999-99-99" ui-mask-placeholder ui-mask-placeholder-char="_"  placeholder="Контактный телефон" />
                 </div>
             </div>
 
