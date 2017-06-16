@@ -1,6 +1,6 @@
 ﻿angular.module('CartModule', [])
 
-    .controller('cartCtr', ['$scope', 'CartNetworkServices', function ($scope, CartNetworkServices) {
+    .controller('cartCtr', ['$scope', 'Notification', 'CartNetworkServices', function ($scope, Notification, CartNetworkServices) {
 
         $scope.model = {
             cartItems: null
@@ -33,7 +33,6 @@
         var load = function () {
             return CartNetworkServices.getCart(function (data) {
                 $scope.model = data;
-                console.log($scope.model);
             });
         }
 
@@ -93,12 +92,7 @@
 
                 addProduct(product);
 
-                popups.success("Товар добавлен в корзину",
-                    true,
-                    {
-                        showIcon: true
-                    });
-                popups.destroy();
+                Notification.warning({ message: 'Товар добавлен в корзину', positionY: 'top', positionX: 'center', delay: 1000 });
 
             },
             removeProduct: function (p) {
