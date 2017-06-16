@@ -1,6 +1,6 @@
 ﻿angular.module('CartModule', [])
 
-    .controller('cartCtr', ['$scope', 'CartNetworkServices', function ($scope, CartNetworkServices) {
+    .controller('cartCtr', ['$scope', 'popups', 'CartNetworkServices', function ($scope, popups, CartNetworkServices) {
 
         $scope.model = {
             cartItems: null
@@ -75,8 +75,6 @@
                 return;
             }
                
-            
-
             CartNetworkServices.checkout({ name: user.name, phone: user.phone, address: user.address, comment: user.comment },
 
                 function (response) {
@@ -97,6 +95,11 @@
                 };
 
                 addProduct(product);
+              
+                popups.success("Товар добавлен в корзину", true, {
+                    showIcon: true
+                });
+
             },
             removeProduct: function (p) {
 
@@ -107,16 +110,8 @@
                     });
 
             },
-            addProduct: function (p) {
+            
 
-                var product = {
-                    productId: p.ProductId,
-                    optionProduct: p.ProductOptionId,
-                    countProduct: 1
-                };
-
-                addProduct(product);
-            },
             updateProduct: function (p, command) {
                 $scope.buttons.minus.disabled = true;
                 var count = 0;
@@ -139,6 +134,7 @@
             },
             checkout: function() {
                 checkout($scope.checkoutModel.user);
+                
             },
             plus: function (id) {
                 var input = $("#product_"+id+"_count");
