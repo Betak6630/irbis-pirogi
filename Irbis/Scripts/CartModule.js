@@ -1,12 +1,12 @@
 ﻿angular.module('CartModule', [])
 
-    .controller('cartCtr', ['$scope', 'popups', 'CartNetworkServices', function ($scope, popups, CartNetworkServices) {
+    .controller('cartCtr', ['$scope', 'CartNetworkServices', function ($scope, CartNetworkServices) {
 
         $scope.model = {
             cartItems: null
         };
 
-        $scope.checkoutModel= {
+        $scope.checkoutModel = {
             user: {
                 name: "",
                 phone: "",
@@ -49,9 +49,6 @@
         }
 
         function updateProduct(product) {
-
-        
-
             CartNetworkServices.updateProduct({ productId: product.productId, optionProduct: product.optionProduct, countProduct: product.countProduct },
 
                 function () {
@@ -64,17 +61,17 @@
 
             if (user.name == "") {
                 $scope.error.isShowLabelName = true;
-               
+
                 console.log("Укажите  имя");
                 return;
             };
 
-            if (user.phone == "") { 
+            if (user.phone == "") {
                 $scope.error.isShowLabelPhone = true;
                 console.log("Укажите  телефон");
                 return;
             }
-               
+
             CartNetworkServices.checkout({ name: user.name, phone: user.phone, address: user.address, comment: user.comment },
 
                 function (response) {
@@ -95,10 +92,13 @@
                 };
 
                 addProduct(product);
-              
-                popups.success("Товар добавлен в корзину", true, {
-                    showIcon: true
-                });
+
+                popups.success("Товар добавлен в корзину",
+                    true,
+                    {
+                        showIcon: true
+                    });
+                popups.destroy();
 
             },
             removeProduct: function (p) {
@@ -110,8 +110,6 @@
                     });
 
             },
-            
-
             updateProduct: function (p, command) {
                 $scope.buttons.minus.disabled = true;
                 var count = 0;
@@ -132,12 +130,12 @@
 
                 updateProduct(product);
             },
-            checkout: function() {
+            checkout: function () {
                 checkout($scope.checkoutModel.user);
-                
+
             },
             plus: function (id) {
-                var input = $("#product_"+id+"_count");
+                var input = $("#product_" + id + "_count");
                 var val = input.val();
 
                 if (val >= 50) {
@@ -149,7 +147,7 @@
             },
             minus: function (id) {
 
-                var input = $("#product_"+id+"_count");
+                var input = $("#product_" + id + "_count");
                 var val = input.val();
 
                 if (val == 1) {

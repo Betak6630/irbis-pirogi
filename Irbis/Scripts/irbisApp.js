@@ -1,1 +1,1 @@
-﻿var app = angular.module('irbisApp', ['CartModule', 'ngResource', 'NetworkServices', 'ui.mask', 'angular-ui-notifications']);
+﻿var app = angular.module('irbisApp', ['CartModule', 'ngResource', 'NetworkServices', 'ui.mask']);
