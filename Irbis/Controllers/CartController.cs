@@ -164,8 +164,11 @@ namespace Irbis.Controllers
             var data = _сartDataService.GetShoppingСart(token);
             _orderDataService.SaveOrder(data, user, token);
             _сartDataService.Clear(token);
-           
-            TelegramBot.SendMessageOrder("Заказ пирогов оформлен");
+
+            var dateTime = _orderDataService.GetLastDateTimeOrder(token);
+            var order = _orderDataService.GetOrder(token, dateTime).ToList();
+
+            //TelegramBot.SendMessageOrder("Заказ пирогов оформлен");
             return Json(true);
         }
 

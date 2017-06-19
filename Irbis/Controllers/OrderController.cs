@@ -8,7 +8,6 @@ using System.Web.WebPages;
 using Irbis.DataService;
 using Irbis.Models;
 using Irbis.Models.Order;
-using IndexViewModel = Irbis.Models.Order.IndexViewModel;
 
 namespace Irbis.Controllers
 {
@@ -24,7 +23,7 @@ namespace Irbis.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = new IndexViewModel();
+            var viewModel = new OrderViewModel();
 
             var tokenStr = Request.Cookies["token"]?.Value;
             var token = Guid.Empty;
@@ -55,11 +54,11 @@ namespace Irbis.Controllers
                     viewModel.CreatedAt = firstElement.CreatedAt;
                 }
 
-                viewModel.Orders = new List<OrderViewModel>();
+                viewModel.Orders = new List<OrderProductViewModel>();
 
                 foreach (var item in data)
                 {
-                    viewModel.Orders.Add(new OrderViewModel()
+                    viewModel.Orders.Add(new OrderProductViewModel()
                     {
                         Token = item.Token,
                         UserName = item.UserName,

@@ -175,8 +175,8 @@
     <Compile Include="Models\Category\IndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Order\IndexViewModel.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
+    <Compile Include="Models\Order\OrderProductViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductOption.cs" />
     <Compile Include="Models\UserModel.cs" />
