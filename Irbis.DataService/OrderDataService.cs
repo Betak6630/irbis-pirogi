@@ -59,7 +59,7 @@ namespace Irbis.DataService
         public DateTime GetLastDateTimeOrder(Guid token)
         {
             var query = "select top 1 CreatedAt from [Order] where  " +
-                        $"Token = '{token}' order by CreatedAt";
+                        $"Token = '{token}' order by CreatedAt desc";
 
             var dateTime = _db.ExecuteScalar<DateTime>(query);
 

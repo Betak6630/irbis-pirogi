@@ -9,6 +9,7 @@ using Irbis.DataService;
 using Irbis.Entities;
 using Irbis.Models;
 using Irbis.Models.Cart;
+using Irbis.Models.Order;
 using Irbis.Utils.Helpers;
 using IndexViewModel = Irbis.Models.Category.IndexViewModel;
 
@@ -167,9 +168,36 @@ namespace Irbis.Controllers
 
             var dateTime = _orderDataService.GetLastDateTimeOrder(token);
             var order = _orderDataService.GetOrder(token, dateTime).ToList();
+            var orderView = Irbis.Code.Order.OrderHelper.GetOrderView(order);
 
-            //TelegramBot.SendMessageOrder("Заказ пирогов оформлен");
+            var mes = TelegramMes(orderView);
+
+            TelegramBot.SendMessageOrder(mes);
             return Json(true);
+        }
+
+        private string TelegramMes(OrderViewModel orderViewModel)
+        {
+            string s = $"🆕  Заказ № :\n";
+            s += $"Дата заказа: {orderViewModel.CreatedAt}\n";
+            s += $"👤  {orderViewModel.User.Name}\n";
+            s += $"📞  {orderViewModel.User.Phone}\n";
+            s += $"🚚  Адрес доставки: {orderViewModel.User.Address}; время доставки: Ближайшее время\n";
+            s += $"📝  {orderViewModel.User.Comment}\n\n";
+
+            s += $"🛒 Корзина: \n";
+      
+            foreach (var order in orderViewModel.Orders)
+            {
+                s += $"{order.ProductName}  {order.Weight} г.  × {order.Count} шт  {order.Price} руб.\n";
+            }
+
+            s += $"\n";
+
+            s += $"Сумма заказа: {orderViewModel.TotalPrice} руб.\n";
+            s += $"💰  Итого к оплате: {orderViewModel.TotalPrice} руб.\n";
+
+            return s;
         }
 
         [HttpGet]
