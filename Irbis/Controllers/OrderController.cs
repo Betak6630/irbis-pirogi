@@ -23,8 +23,6 @@ namespace Irbis.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = new OrderViewModel();
-
             var tokenStr = Request.Cookies["token"]?.Value;
             var token = Guid.Empty;
 
@@ -37,50 +35,7 @@ namespace Irbis.Controllers
 
             var data = _orderDataService.GetOrder(token, dateTime).ToList();
 
-            if (data.Any())
-            {
-                var firstElement = data.FirstOrDefault();
-
-                if (firstElement != null)
-                {
-                    viewModel.User = new UserModel()
-                    {
-                        Name = firstElement.UserName,
-                        Phone = firstElement.UserPhone,
-                        Address = firstElement.UserAddress,
-                        Comment = firstElement.UserComment
-                    };
-
-                    viewModel.CreatedAt = firstElement.CreatedAt;
-                }
-
-                viewModel.Orders = new List<OrderProductViewModel>();
-
-                foreach (var item in data)
-                {
-                    viewModel.Orders.Add(new OrderProductViewModel()
-                    {
-                        Token = item.Token,
-                        UserName = item.UserName,
-                        UserPhone = item.UserPhone,
-                        UserAddress = item.UserAddress,
-                        UserComment = item.UserComment,
-                        ProductId = item.ProductId,
-                        ProductName = item.ProductName,
-                        ProductOptionId = item.ProductOptionId,
-                        Weight = item.Weight,
-                        ProductTypeId = item.ProductTypeId,
-                        Price = item.Price,
-                        Count = item.Count,
-                        TotalPrice = item.TotalPrice,
-                        CreatedAt = item.CreatedAt
-                    });
-
-                    viewModel.TotalPrice += item.TotalPrice;
-                }
-
-                 
-            }
+            var viewModel = Irbis.Code.Order.OrderHelper.GetOrderView(data);
 
             return View(viewModel);
         }
