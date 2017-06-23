@@ -1076,6 +1076,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Home\Delivery.cshtml" />
+    <Content Include="Views\Shared\Control\Basket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
