@@ -6,11 +6,10 @@ namespace Irbis.Controllers
 {
     public partial class BaseController : Controller
     {
-        public Guid Token = Guid.Empty;
+        protected Guid Token = Guid.Empty;
 
         public BaseController()
         {
-
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
