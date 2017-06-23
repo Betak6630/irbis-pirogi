@@ -11,7 +11,7 @@ using Irbis.Models.Order;
 
 namespace Irbis.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : BaseController
     {
         private readonly OrderDataService _orderDataService;
 
@@ -23,17 +23,9 @@ namespace Irbis.Controllers
 
         public ActionResult Index()
         {
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
+            var dateTime = _orderDataService.GetLastDateTimeOrder(Token);
 
-            if (tokenStr != null && !tokenStr.IsEmpty())
-            {
-                token = Guid.Parse(tokenStr);
-            }
-
-            var dateTime = _orderDataService.GetLastDateTimeOrder(token);
-
-            var data = _orderDataService.GetOrder(token, dateTime).ToList();
+            var data = _orderDataService.GetOrder(Token, dateTime).ToList();
 
             var viewModel = Irbis.Code.Order.OrderHelper.GetOrderView(data);
 
