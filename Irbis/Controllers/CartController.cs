@@ -15,7 +15,7 @@ using IndexViewModel = Irbis.Models.Category.IndexViewModel;
 
 namespace Irbis.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         private readonly СartDataService _сartDataService;
         private readonly OrderDataService _orderDataService;
@@ -26,67 +26,23 @@ namespace Irbis.Controllers
             _сartDataService = dataService.СartDataService;
             _orderDataService = dataService.OrderDataService;
         }
+
         public ActionResult Index()
         {
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
-
-            if (tokenStr != null && !tokenStr.IsEmpty())
-            {
-                token = Guid.Parse(tokenStr);
-            }
-
-            var model = GetCart(token);
-
+            var model = GetCart(this.Token);
             return View(model);
-        }
-
-        private Models.Cart.IndexViewModel GetCart(Guid token)
-        {
-            var data = _сartDataService.GetByToken(token);
-
-            var totalPrice = _сartDataService.GetTotalPriceByToken(token);
-
-            var model = new Models.Cart.IndexViewModel();
-
-            model.CartItems = new List<ViewCartModel>();
-            foreach (var item in data)
-            {
-                model.CartItems.Add(new ViewCartModel()
-                {
-                    ProductId = item.ProductId,
-                    ProductName = item.ProductName,
-                    ProductTypeId = item.ProductTypeId,
-                    Weight = item.Weight,
-                    ProductOptionId = item.ProductOptionId,
-                    Count = item.Count,
-                    TotalPrice = item.TotalPrice
-                });
-            }
-
-            model.TotalPrice = totalPrice;
-
-            return model;
         }
 
         [HttpPost]
         public JsonResult AddProduct(int productId, int optionProduct, int countProduct)
         {
             bool result = false;
-
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
-
             try
             {
-                if (tokenStr != null && !tokenStr.IsEmpty())
-                {
-                    token = Guid.Parse(tokenStr);
-                }
-
+              
                 if (countProduct > 0)
                 {
-                    _сartDataService.AddProductToCart(token, productId, optionProduct, countProduct);
+                    _сartDataService.AddProductToCart(Token, productId, optionProduct, countProduct);
                     result = true;
                 }
             }
@@ -102,19 +58,9 @@ namespace Irbis.Controllers
         public JsonResult UpdateProduct(int productId, int optionProduct, int countProduct)
         {
             bool result = false;
-
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
-
             try
             {
-                if (tokenStr != null && !tokenStr.IsEmpty())
-                {
-                    token = Guid.Parse(tokenStr);
-                }
-
-
-                _сartDataService.UpdateProductToCart(token, productId, optionProduct, countProduct);
+                _сartDataService.UpdateProductToCart(Token, productId, optionProduct, countProduct);
                 result = true;
 
             }
@@ -146,14 +92,6 @@ namespace Irbis.Controllers
         [HttpPost]
         public JsonResult Checkout(string name, string phone, string address, string comment)
         {
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
-
-            if (tokenStr != null && !tokenStr.IsEmpty())
-            {
-                token = Guid.Parse(tokenStr);
-            }
-
             var user = new Irbis.Entities.User()
             {
                 Name = name,
@@ -162,18 +100,32 @@ namespace Irbis.Controllers
                 Comment = comment
             };
 
-            var data = _сartDataService.GetShoppingСart(token);
-            _orderDataService.SaveOrder(data, user, token);
-            _сartDataService.Clear(token);
+            var data = _сartDataService.GetShoppingСart(Token);
+            _orderDataService.SaveOrder(data, user, Token);
+            _сartDataService.Clear(Token);
 
-            var dateTime = _orderDataService.GetLastDateTimeOrder(token);
-            var order = _orderDataService.GetOrder(token, dateTime).ToList();
+            var dateTime = _orderDataService.GetLastDateTimeOrder(Token);
+            var order = _orderDataService.GetOrder(Token, dateTime).ToList();
             var orderView = Irbis.Code.Order.OrderHelper.GetOrderView(order);
 
             var mes = TelegramMes(orderView);
 
             TelegramBot.SendMessageOrder(mes);
             return Json(true);
+        }
+
+        [HttpGet]
+        public JsonResult GetСartByToken()
+        {
+            var result = _сartDataService.GetByToken(Token).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCart()
+        {
+            var model = GetCart(Token);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         private string TelegramMes(OrderViewModel orderViewModel)
@@ -186,7 +138,7 @@ namespace Irbis.Controllers
             s += $"📝  {orderViewModel.User.Comment}\n\n";
 
             s += $"🛒 Корзина: \n";
-      
+
             foreach (var order in orderViewModel.Orders)
             {
                 s += $"{order.ProductName}  {order.Weight} г.  × {order.Count} шт  {order.Price} руб.\n";
@@ -200,35 +152,32 @@ namespace Irbis.Controllers
             return s;
         }
 
-        [HttpGet]
-        public JsonResult GetСartByToken()
+        private Models.Cart.IndexViewModel GetCart(Guid token)
         {
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
+            var data = _сartDataService.GetByToken(token);
 
-            if (tokenStr != null && !tokenStr.IsEmpty())
+            var totalPrice = _сartDataService.GetTotalPriceByToken(token);
+
+            var model = new Models.Cart.IndexViewModel();
+
+            model.CartItems = new List<ViewCartModel>();
+            foreach (var item in data)
             {
-                token = Guid.Parse(tokenStr);
+                model.CartItems.Add(new ViewCartModel()
+                {
+                    ProductId = item.ProductId,
+                    ProductName = item.ProductName,
+                    ProductTypeId = item.ProductTypeId,
+                    Weight = item.Weight,
+                    ProductOptionId = item.ProductOptionId,
+                    Count = item.Count,
+                    TotalPrice = item.TotalPrice
+                });
             }
 
-            var result = _сartDataService.GetByToken(token).ToList();
+            model.TotalPrice = totalPrice;
 
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetCart()
-        {
-            var tokenStr = Request.Cookies["token"]?.Value;
-            var token = Guid.Empty;
-
-            if (tokenStr != null && !tokenStr.IsEmpty())
-            {
-                token = Guid.Parse(tokenStr);
-            }
-
-            var model = GetCart(token);
-
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return model;
         }
     }
 }
