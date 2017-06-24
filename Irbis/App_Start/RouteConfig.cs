@@ -13,6 +13,13 @@ namespace Irbis
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Pies", "pies", new { controller = "Category", action = "Index", productType = "1", area = "" });
+            routes.MapRoute("SweetPies", "SweetPies", new { controller = "Category", action = "Index", productType = "2", area = "" });
+
+            routes.MapRoute("Delivery", "delivery", new { controller = "Home", action = "Delivery",  area = "" });
+            routes.MapRoute("About", "about", new { controller = "Home", action = "About",  area = "" });
+            routes.MapRoute("Contact", "contact", new { controller = "Home", action = "Contact",  area = "" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

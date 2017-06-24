@@ -10,7 +10,7 @@ namespace Irbis.Controllers
     {
         public ActionResult Index()
         {
-            return Redirect("Category?page=1");
+            return View();
         }
 
         public ActionResult About()

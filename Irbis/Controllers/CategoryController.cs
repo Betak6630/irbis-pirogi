@@ -20,11 +20,11 @@ namespace Irbis.Controllers
             _productDataService = dataService.ProductDataService;
         }
 
-        public ActionResult Index(int page)
+        public ActionResult Index(int productType)
         {
             var model = new IndexViewModel();
 
-            if (page == 1)
+            if (productType == 1)
             {
                 var data = _productDataService.GetProducts();
                 var products = new List<Product>();
@@ -56,11 +56,11 @@ namespace Irbis.Controllers
                     products.Add(p);
                 }
 
-                model.Title = "Осетинские пироги";
+                model.Title = "Пироги";
                 model.Products = products;
             }
 
-            if (page == 2)
+            if (productType == 2)
             {
                 model.Title = "Русские пироги";
             }
