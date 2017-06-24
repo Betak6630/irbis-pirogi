@@ -20,52 +20,60 @@ namespace Irbis.Controllers
             _productDataService = dataService.ProductDataService;
         }
 
-        public ActionResult Index(int productType)
+        public ActionResult Index(int productTypeId)
         {
             var model = new IndexViewModel();
 
-            if (productType == 1)
+            if (productTypeId == 1)
             {
-                var data = _productDataService.GetProducts();
-                var products = new List<Product>();
-
-                foreach (var item in data)
-                {
-                    var productOptions = _productDataService.GetProductOptionsByProductId(item.Id);
-
-                    var p = new Product()
-                    {
-                        Id = item.Id,
-                        Name = item.Name,
-                        Description = item.Description,
-                        ProductTypeId = item.ProductTypeId,
-                        Option = new List<ProductOption>()
-                    };
-
-                    foreach (var productOption in productOptions)
-                    {
-                        p.Option.Add(new ProductOption()
-                        {
-                            Id = productOption.Id,
-                            ProductId = productOption.ProductId,
-                            Weight = productOption.Weight,
-                            Price = productOption.Price
-                        });
-                    }
-
-                    products.Add(p);
-                }
-
+                var products = GetProductsByproductType(productTypeId);
                 model.Title = "Пироги";
                 model.Products = products;
             }
 
-            if (productType == 2)
+            if (productTypeId == 2)
             {
-                model.Title = "Русские пироги";
+                var products = GetProductsByproductType(productTypeId);
+                model.Title = "Сладкие пироги";
+                model.Products = products;
             }
 
             return View(model);
+        }
+
+        private List<Product> GetProductsByproductType(int productTypeId)
+        {
+            var data = _productDataService.GetProductsByProductTypeId(productTypeId);
+            var products = new List<Product>();
+
+            foreach (var item in data)
+            {
+                var productOptions = _productDataService.GetProductOptionsByProductId(item.Id);
+
+                var p = new Product()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    ProductTypeId = item.ProductTypeId,
+                    Option = new List<ProductOption>()
+                };
+
+                foreach (var productOption in productOptions)
+                {
+                    p.Option.Add(new ProductOption()
+                    {
+                        Id = productOption.Id,
+                        ProductId = productOption.ProductId,
+                        Weight = productOption.Weight,
+                        Price = productOption.Price
+                    });
+                }
+
+                products.Add(p);
+            }
+
+            return products;
         }
     }
 }

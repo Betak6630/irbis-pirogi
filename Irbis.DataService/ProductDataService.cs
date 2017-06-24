@@ -35,6 +35,13 @@ namespace Irbis.DataService
             return data;
         }
 
+        public IEnumerable<Product> GetProductsByProductTypeId(int productTypeId)
+        {
+            var data = _db.Query<Product>($"select * from product where productTypeId={productTypeId}").ToList();
+
+            return data;
+        }
+
         /// <summary>
         /// Возвращает опции для продукта 
         /// </summary>
