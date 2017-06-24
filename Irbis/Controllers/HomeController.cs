@@ -10,7 +10,7 @@ namespace Irbis.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/pies");
         }
 
         public ActionResult About()
