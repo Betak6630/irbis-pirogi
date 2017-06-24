@@ -27,7 +27,7 @@ namespace Irbis.Controllers
             if (productTypeId == 1)
             {
                 var products = GetProductsByproductType(productTypeId);
-                model.Title = "Пироги";
+                model.Title = "Осетинские пироги";
                 model.Products = products;
             }
 
@@ -35,6 +35,13 @@ namespace Irbis.Controllers
             {
                 var products = GetProductsByproductType(productTypeId);
                 model.Title = "Сладкие пироги";
+                model.Products = products;
+            }
+
+            if (productTypeId == 3)
+            {
+                var products = GetProductsByproductType(productTypeId);
+                model.Title = "Постные пироги";
                 model.Products = products;
             }
 

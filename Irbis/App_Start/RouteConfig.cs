@@ -15,6 +15,7 @@ namespace Irbis
 
             routes.MapRoute("Pies", "pies", new { controller = "Category", action = "Index", productTypeId = "1", area = "" });
             routes.MapRoute("SweetPies", "SweetPies", new { controller = "Category", action = "Index", productTypeId = "2", area = "" });
+            routes.MapRoute("LeanPies", "LeanPies", new { controller = "Category", action = "Index", productTypeId = "3", area = "" });
 
             routes.MapRoute("Delivery", "delivery", new { controller = "Home", action = "Delivery",  area = "" });
             routes.MapRoute("About", "about", new { controller = "Home", action = "About",  area = "" });
