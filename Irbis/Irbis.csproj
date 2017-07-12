@@ -210,6 +210,7 @@
     <Content Include="Content\img\htmlBg.jpg" />
     <Content Include="Content\img\instagram.svg" />
     <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\map.svg" />
     <Content Include="Content\img\phone.svg" />
     <Content Include="Content\img\product\3.jpg" />
