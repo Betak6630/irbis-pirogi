@@ -3,7 +3,8 @@
 <div id="product-@Model.Id" class="col-xs-6 col-sm-4">
     <figure class="thumbnail cartItem">
 
-        <img src="~/Content/img/1_big.jpg" alt="...">
+        @*<img src="~/Content/img/1_big.jpg" alt="...">*@
+        <img src="@Model.PictureUrl" alt="@Model.Name" style="width: 285px; height: 213px">
 
         <figcaption class="caption">
 

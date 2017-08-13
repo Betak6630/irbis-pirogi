@@ -53,5 +53,22 @@ namespace Irbis.DataService
 
             return data;
         }
+
+        public ProductPicture GetPictureByProduct(int productId)
+        {
+            var data = _db.Query<ProductPicture>("select * from ProductPicture where ProductId=" + productId).ToList();
+            var productPicture = data.FirstOrDefault();
+            if (productPicture == null)
+            {
+                return new ProductPicture()
+                {
+                    Id = 0,
+                    ProductId = 0,
+                    PictureUrl = "/Content/img/product/default.jpg"
+                };
+            }
+
+            return productPicture;
+        }
     }
 }

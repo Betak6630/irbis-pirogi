@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using Irbis.DataService;
 using Irbis.Models;
 using IndexViewModel = Irbis.Models.Category.IndexViewModel;
@@ -53,16 +54,20 @@ namespace Irbis.Controllers
             var data = _productDataService.GetProductsByProductTypeId(productTypeId);
             var products = new List<Product>();
 
-            foreach (var item in data)
+            foreach (var product in data)
             {
-                var productOptions = _productDataService.GetProductOptionsByProductId(item.Id);
+                var productOptions = _productDataService.GetProductOptionsByProductId(product.Id);
+
+                var productPicture = _productDataService.GetPictureByProduct(product.Id);
+                var productPictureUrl = productPicture.PictureUrl;
 
                 var p = new Product()
                 {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Description = item.Description,
-                    ProductTypeId = item.ProductTypeId,
+                    Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    ProductTypeId = product.ProductTypeId,
+                    PictureUrl = productPictureUrl,
                     Option = new List<ProductOption>()
                 };
 

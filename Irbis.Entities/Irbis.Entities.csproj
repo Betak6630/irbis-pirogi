@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Order.cs" />
     <Compile Include="ShoppingСart.cs" />
-    <Compile Include="Image.cs" />
+    <Compile Include="ProductPicture.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

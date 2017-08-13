@@ -60,8 +60,10 @@
   --CreatedAt datetime not null
   --)
 
-  select * from Shopping—art
-
-
-  select * from [Order]
-
+  
+--go
+--create table ProductPicture(
+--Id int PRIMARY KEY IDENTITY(1, 1) not null,
+--ProductId int not null FOREIGN KEY REFERENCES Product(Id),
+--[PictureUrl] nvarchar(255) null,
+--)

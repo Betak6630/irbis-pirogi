@@ -9,7 +9,7 @@ namespace Irbis.Entities
     /// <summary>
     /// Картинки
     /// </summary>
-    public class Image
+    public class ProductPicture
     {
         /// <summary>
         /// 
@@ -24,6 +24,6 @@ namespace Irbis.Entities
         /// <summary>
         /// Url картинки
         /// </summary>
-        public string ImageUrl { get; set; }
+        public string PictureUrl { get; set; }
     }
 }
