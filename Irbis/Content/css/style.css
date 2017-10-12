@@ -1,5 +1,14 @@
-﻿.logoType {
-   display: inline-block;
+﻿figure figcaption{
+    height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+figure > img {
+    height:  170px;    
+}
+.logoType {
+    display: inline-block;
 }
     .logoType:hover {
         background-color: transparent;

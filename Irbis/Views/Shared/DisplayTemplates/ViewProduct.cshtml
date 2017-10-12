@@ -1,11 +1,8 @@
 ﻿@model Irbis.Models.Product
 
-<div id="product-@Model.Id" class="col-xs-6 col-sm-4">
+<div id="product-@Model.Id" class="col-xs-6 col-sm-6  col-md-4">
     <figure class="thumbnail cartItem">
-
-        @*<img src="~/Content/img/1_big.jpg" alt="...">*@
-        <img src="@Model.PictureUrl" alt="@Model.Name" style="width: 285px; height: 213px">
-
+        <img src="@Model.PictureUrl" alt="@Model.Name">
         <figcaption class="caption">
 
             <h3>@Model.Name</h3>
@@ -19,8 +16,10 @@
                 {
                     <dt class="radio">
                         <label for="option_@item.Id">
-                            <input id="option_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked="" /> 
-                            &nbsp;@item.Weight г. —  <b>@item.Price <img class="svg ruble" src="/Content/img/ruble.svg" title="рублей" alt="рублей" /></b>
+                            <input id="option_@item.Id" name="option_@item.ProductId" value="@item.Id" type="radio" checked=""/>
+                            &nbsp;@item.Weight г. — <b>
+                                @item.Price <img class="svg ruble" src="/Content/img/ruble.svg" title="рублей" alt="рублей"/>
+                            </b>
                         </label>
                     </dt>
                 }
@@ -30,9 +29,13 @@
                 <div class="col-xs-6">
                     <div class="counter">
                         <div class="input-group">
-                            <span class="input-group-btn"><button type="button" class="btn counter__decrease" ng-click="events.minus(@Model.Id)" style="height: 30px;">-</button></span>
-                            <input class="form-control counter__value"  id="product_@(Model.Id)_count" type="text" value="1" readonly maxlength="2" size="2" style="height: 30px; text-align: center; width: 35px;">
-                            <span class="input-group-btn"><button type="button" class="btn counter__decrease" ng-click="events.plus(@Model.Id)" style="height: 30px;">+</button></span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn counter__decrease" ng-click="events.minus(@Model.Id)" style="height: 30px;">-</button>
+                            </span>
+                            <input class="form-control counter__value" id="product_@(Model.Id)_count" type="text" value="1" readonly maxlength="2" size="2" style="height: 30px; text-align: center; width: 35px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn counter__decrease" ng-click="events.plus(@Model.Id)" style="height: 30px;">+</button>
+                            </span>
                         </div>
                     </div>
                 </div>
