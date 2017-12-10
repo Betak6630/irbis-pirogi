@@ -175,6 +175,7 @@
     <Compile Include="Models\Cart\IndexViewModel.cs" />
     <Compile Include="Models\Cart\ViewCartModel.cs" />
     <Compile Include="Models\Category\IndexViewModel.cs" />
+    <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />

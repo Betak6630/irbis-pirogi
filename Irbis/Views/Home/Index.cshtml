@@ -1,5 +1,25 @@
-﻿
-@Html.Partial("Control/TopProduct")
+﻿@model Irbis.Models.Home.IndexViewModel
+
+<div align="center" style="color: aliceblue; padding: 10px;">
+    <h3>@Model.Title</h3>
+</div>
+
+<section class="container-fluid body bg-white" ng-controller="cartCtr">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row">
+                @{
+                    foreach (var product in Model.Products)
+                    {
+                        @Html.Partial("DisplayTemplates/ViewProduct", product)
+                    }
+                }
+            </div>
+        </div>
+
+        @Html.Partial("Control/Basket")
+    </div>
+</section>
 
 <section class="container-fluid body bg-dark pb10">
     <div class="row">
