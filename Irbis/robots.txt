@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*.config
+sitemap: http://irbis-pirogi.ru/sitemap.xml
+Host: http://irbis-pirogi.ru

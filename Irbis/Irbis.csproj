@@ -242,6 +242,7 @@
     <Content Include="Content\js\imageGallery\jquery.blueimp-gallery.min.js" />
     <Content Include="Content\js\modernizr-custom.js" />
     <Content Include="favicon.ico" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
